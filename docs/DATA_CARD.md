@@ -3,7 +3,7 @@
 **Dataset Name:** Grito Labs EdTech Multi-Channel Customer Journeys & Conversions  
 **Domain:** EdTech (Data Analytics & Business Decision Science)  
 **Version:** 2.0 (Verified Seed 42 Run)  
-**Curator:** Senior Marketing Analytics Lead & Data Engineer  
+**Curator:** J Nikhil ([GitHub: JNikhil11](https://github.com/JNikhil11))  
 **Date of Release:** November 2026  
 **Authenticity Notice:** Synthetic dataset generated to mimic realistic multi-channel marketing behavior (Seed 42), because the legacy public Criteo Attribution Modeling for Bidding dataset (Diemert et al., 2017) host link returned HTTP 404 (dead mirror) and HuggingFace mirrors require restricted authentication tokens. The synthetic generator guarantees 100% deterministic, zero-setup mathematical reproducibility while accurately modeling EdTech unit economics, multi-touch consideration gestation, and channel synergies.
 
@@ -42,7 +42,7 @@ All tables underwent automated schema and integrity checks during ingestion:
 2. **Referential Integrity:** 0 orphan foreign keys; 100% of touchpoint and conversion records cleanly resolve to customer, channel, and campaign dimensions.
 3. **Financial Constraints:** 0 negative costs, 0 negative spend records, and 0 non-positive revenues. Total paid media spend equals **$426,418.04** (17.96% of total revenue).
 4. **Chronological Validity:** 100% of conversion timestamps occur strictly at or after preceding touchpoints within a 30-day sessionization window.
-5. **Reconciliation Audit:** Attributed conversion revenue across all 5 SQL models equals the ground truth conversion revenue (**$2,374,133.70**) to the exact penny ($0.00 discrepancy).
+5. **Reconciliation Audit:** Attributed conversion revenue across all 5 SQL models equals the ground truth conversion revenue (**$2,382,514.60**) to the exact penny ($0.00 discrepancy).
 6. **Multi-Touch Realism:** Exactly 1,897 of 2,744 orders (69.1%) involve multi-channel journeys ($\ge 2$ touchpoints), satisfying realistic high-involvement education research criteria.
 
 ---

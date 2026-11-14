@@ -42,7 +42,7 @@ SLIDE_DATA = [
         "is_title": True,
         "title": "Multi-Channel Marketing Analytics &\nAttribution Optimization Framework",
         "subtitle": "Data-Driven Journey Modeling, Algorithmic Attribution & Capital Reallocation",
-        "author": "Prepared for Grito Labs Executive Analytics Committee | Q4 2026\n[Synthetic Dataset: Seed 42, 16K Students, 40.8K Touches, 2,744 Orders]",
+        "author": "Candidate: J Nikhil (GitHub: https://github.com/JNikhil11)\nPrepared for Grito Labs Executive Analytics Committee | Q4 2026\n[Synthetic Dataset: Seed 42, 16K Journeys, 40.8K Touches, 2,450 New Students, 2,744 Orders]",
         "key_metric": ""
     },
     {
@@ -50,11 +50,11 @@ SLIDE_DATA = [
         "action_title": "Executive Summary: Zero-Sum Budget Shift Unlocks +$224.9K Revenue at Fixed $426.4K Spend",
         "category": "STRATEGIC OVERVIEW",
         "bullets": [
-            "Baseline Performance: $426.4K marketing spend generated $2.37M across 2,744 enrollments (Blended Paid ROAS: 3.96x, Spend: 17.96% of revenue).",
+            "Baseline Performance: $426.4K marketing spend generated $2.38M initial revenue across 2,450 newly enrolled students (Blended Paid ROAS: 3.96x; Headline CAC: $174.05; Cost per Order: $155.40 across 2,744 total orders).",
             "The Attribution Blindspot: Last-Touch systematically undervalues Paid Social by +47.6% (+$184.6K) and Display Ads by +37.8% (+$74.8K), while over-crediting Direct navigation by -33.6%.",
             "Multi-Touch Dominance: 69.1% of conversions involve multi-channel paths with 5.2-day average latency; single-touch evaluation misleads capital allocation.",
             "Quantified Optimization: Reallocating -$58.4K from diminishing Paid Search into Email (+$21.3K), Referral (+$20.3K), Display (+$12.3K), and Social (+$4.6K) expands Paid ROAS from 3.96x to 4.49x.",
-            "Execution & De-Risking: Pre-validated via 4-week Matched-Market Geo-Holdout test with automated weekly Power BI refreshes."
+            "Execution & De-Risking: Pre-validated via 4-week Matched-Market Geo-Holdout test with automated weekly reporting."
         ],
         "kpis": [
             ("Current Paid Spend", "$426.4K", "Strict Zero Net Shift"),
@@ -70,7 +70,7 @@ SLIDE_DATA = [
             "High-Involvement EdTech Decisions: Career-track courses ($349 to $2,199) require multi-week research, curriculum evaluation, and peer review.",
             "Myopic Capital Allocation: Crediting only the closing click causes marketing teams to over-fund brand search and starve top-of-funnel discovery.",
             "Attribution Deficit: Without multi-touch modeling, marketing cannot identify which mid-funnel touchpoints prevent student abandonment.",
-            "Data Authenticity & Transparency: Synthetic dataset calibrated to realistic EdTech metrics (seed 42, 16K students, 40.8K touches, 2,744 orders) following public data license constraints."
+            "Data Authenticity & Transparency: Synthetic dataset calibrated to realistic EdTech metrics (seed 42, 16K journeys, 40.8K touches, 2,450 new students, 2,744 orders) following public data license constraints."
         ],
         "kpis": [
             ("Average Order Value", "$865", "Across Course Tiers"),
@@ -84,40 +84,40 @@ SLIDE_DATA = [
         "category": "DATA ENGINEERING",
         "bullets": [
             "Dimensional Warehouse: Built in portable ANSI SQL on DuckDB/SQLite; 100% compliant with PostgreSQL/Snowflake.",
-            "Rigorous Audit Pass: Zero duplicate primary keys, zero orphan foreign keys, zero negative spend rows, and verified 30-day lookback windows.",
+            "Rigorous Quality Verification: Zero duplicate primary keys, zero orphan foreign keys, zero negative spend rows, and verified 30-day lookback windows.",
             "Sessionized 30-Day Lookback: Window functions (ROW_NUMBER, LAG, SUM OVER) isolate pre-conversion customer interactions.",
-            "Ground-Truth Revenue Sum: Attributed revenue across all 5 SQL models reconciles to the exact penny ($2,374,133.70)."
+            "Ground-Truth Revenue Sum: Attributed revenue across all 5 SQL models reconciles to the exact penny ($2,382,514.60; $0.00 unattributed)."
         ],
         "kpis": [
-            ("Touchpoints Audited", "40,806", "100% Validated"),
-            ("Customers Tracked", "16,000", "Full Trajectory"),
-            ("Revenue Reconciled", "$2.37M", "Zero Discrepancy ($0.00)")
+            ("Touchpoints Audited", "40,806", "All Checks Passed"),
+            ("Customers Tracked", "16,000", "2,450 New Students"),
+            ("Revenue Reconciled", "$2.38M", "Zero Discrepancy ($0.00)")
         ]
     },
     {
         "slide_num": 5,
-        "action_title": "Macro Channel Performance: Paid Search & Social Absorb 80% of Spend with Divergent Unit Economics",
+        "action_title": "Macro Channel Performance: Search & Social Absorb 80% of Spend with Divergent Unit Economics",
         "category": "CHANNEL PERFORMANCE",
         "bullets": [
-            "Paid Search ($198.4K Spend): Captures high-intent evaluation traffic ($506.1K Last-Touch Rev), but has the highest CAC ($336.86) and lowest ROAS (2.55x).",
-            "Paid Social ($143.0K Spend): Delivers high discovery volume (2.36M impressions) at a balanced $178.47 CAC and 4.00x Position-Based ROAS.",
+            "Paid Search ($198.4K Spend): Captures high-intent evaluation traffic ($506.1K Last-Touch Rev), but has the highest CAC ($367.33) and lowest ROAS (2.55x LTA, 2.70x Position-Based).",
+            "Paid Social ($143.0K Spend): Delivers high discovery volume (2.36M impressions) at a balanced $146.47 CAC and 4.00x Position-Based ROAS.",
             "Email Marketing ($13.7K Spend): Operates at an efficient 13.98x Position-Based ROAS with an ultra-low CAC of $38.27.",
             "Referral ($19.7K Spend): Generates $117.1K Position-Based revenue at 5.93x ROAS, representing high student advocacy trust."
         ],
         "kpis": [
-            ("Paid Search CAC", "$336.86", "Highest Acquisition Cost"),
-            ("Paid Social CAC", "$178.47", "47% Cheaper than Search"),
+            ("Paid Search CAC", "$367.33", "Highest Acquisition Cost"),
+            ("Paid Social CAC", "$146.47", "60% Lower than Search"),
             ("Email Mktg ROAS", "13.98x", "Severely Underfunded")
         ]
     },
     {
         "slide_num": 6,
-        "action_title": "Unit Economics Disparity: Paid Social Acquires Qualified Students at 47% Lower CAC than Search",
+        "action_title": "Unit Economics Disparity: Paid Social Acquires Qualified Students at 60% Lower CAC than Search",
         "category": "UNIT ECONOMICS",
         "bullets": [
             "CPC Dynamics: Paid Search CPC ($9.54) is 1.7x Paid Social ($5.51), 3.4x Referral ($2.77), and 4.9x Display ($1.93).",
             "CTR Benchmarks: Display CTR is 0.29%, Paid Social CTR is 1.10%, Email CTR is 2.81%, Paid Search CTR is 4.24%—aligning with EdTech norms.",
-            "The CAC Divergence: Elevated Search CPC drives its cost per customer acquisition ($336.86) to 1.9x that of Social ($178.47).",
+            "The CAC Divergence: Elevated Search CPC drives its cost per student acquisition ($367.33) to 2.5x that of Social ($146.47).",
             "Diminishing Returns: Paid Search is operating deep into the flat portion of its Hill saturation curve; reallocating marginal dollars is imperative."
         ],
         "kpis": [
@@ -128,18 +128,18 @@ SLIDE_DATA = [
     },
     {
         "slide_num": 7,
-        "action_title": "Customer Journey Dynamics: 69.1% of Orders Require Multi-Channel Sequences Across 5.2 Days",
+        "action_title": "Customer Journey Dynamics: 69.1% of Enrolled Students Require Multi-Channel Sequences",
         "category": "JOURNEY VELOCITY",
         "bullets": [
             "Path Length Distribution: Single-touch (30.9%), 2-3 touches (48.4%), 4+ touches (20.7%).",
             "Time-to-Convert: 43.1% convert within 3 days; 37.5% convert between 4 to 14 days; 19.4% require 15 to 30 days.",
-            "Top Converting Combinations: Paid Social > Email Marketing, Paid Social > Direct, and Display > Email.",
-            "Key Insight: Students introduced via Paid Social or Display require email nurture and direct recall before completing enrollment."
+            "Top Converting Multi-Touch Sequences: Paid Social > Paid Search (43), Paid Search > Direct (41), Paid Social > Organic Search (35), Paid Social > Email Marketing (33).",
+            "Key Insight: Students introduced via Paid Social require search, email nurture, and direct recall before completing enrollment."
         ],
         "kpis": [
-            ("Multi-Touch Share", "69.1%", "Multi-Channel Paths"),
+            ("Multi-Touch Share", "69.1%", "1,693 of 2,450 Journeys"),
             ("Median Gestation", "4.1 Days", "Consideration Span"),
-            ("Top Assisted Pair", "Social > Email", "High-Converting Flow")
+            ("Top Assisted Pair", "Social > Search", "43 Enrolled Students")
         ]
     },
     {
@@ -148,14 +148,14 @@ SLIDE_DATA = [
         "category": "FUNNEL ROLE",
         "bullets": [
             "Top/Mid-Funnel Feeders: Display Ads (2.61 Assist:Last Ratio) and Paid Social (2.14 Assist:Last Ratio) originate pipeline.",
-            "Nurturing Engine: Email Marketing generates 742 assisting interactions, acting as the primary mid-funnel glue.",
-            "Closing Harvesters: Paid Search (1.18 ratio) and Direct disproportionately capture conversions originated elsewhere.",
+            "Nurturing Engine: Email Marketing generates 3,028 assisting interactions, acting as the primary mid-funnel glue.",
+            "Closing Harvesters: Paid Search (1.32 ratio) and Direct disproportionately capture conversions originated elsewhere.",
             "Management Action: Evaluating Social or Display purely on Last-Click penalizes them for originating customers who convert via Direct."
         ],
         "kpis": [
             ("Display Assist Ratio", "2.61", "Feeder Channel"),
             ("Social Assist Ratio", "2.14", "Feeder Channel"),
-            ("Search Assist Ratio", "1.18", "Closer Channel")
+            ("Search Assist Ratio", "1.32", "Closer Channel")
         ]
     },
     {
@@ -180,14 +180,14 @@ SLIDE_DATA = [
         "category": "ALGORITHMIC ATTRIBUTION",
         "bullets": [
             "Markov Removal Effect: Removing Paid Social from the transition graph causes an 18.2% drop in network conversions.",
-            "Shapley Game Theory: Marginal cooperative contribution assigns $484.0K to Social and validates Position-Based alignment.",
-            "Cross-Validation: Algorithmic Markov revenue for Paid Social ($484.0K) strongly correlates with Position-Based ($571.9K, r = 0.94).",
-            "Operational Synthesis: Position-Based U-Shaped (40-20-40) selected as daily operational model; Markov used for quarterly budget setting."
+            "Shapley Value Formulation: Marginal cooperative contributions assign $543.0K to Social, $528.5K to Search, and $229.0K to Email Marketing, validating Position-Based alignment.",
+            "Exact Penny Efficiency: Cooperative game theory axioms guarantee full revenue conservation: sum of channel Shapley values equals $2,382,514.60.",
+            "Operational Synthesis: Position-Based U-Shaped (40-20-40) selected as daily operational model; Markov & Shapley used for quarterly budget setting."
         ],
         "kpis": [
-            ("Markov Social Rev", "$484.0K", "Data-Driven Credit"),
-            ("Social Removal Eff", "18.2%", "Pipeline Destruction"),
-            ("Model Correlation", "r = 0.94", "High Agreement")
+            ("Shapley Social Rev", "$543.0K", "Game-Theoretic Credit"),
+            ("Shapley Email Rev", "$229.0K", "High-Leverage Nurture"),
+            ("Attribution Sum", "$2.38M", "Exact Penny Reconciled")
         ]
     },
     {
@@ -195,15 +195,15 @@ SLIDE_DATA = [
         "action_title": "Campaign Performance Matrix: 3 Stars Drive Scale; 4 Email/Referral Workhorses Deserve Immediate Funding",
         "category": "PORTFOLIO QUADRANTS",
         "bullets": [
-            "Stars (Protect & Scale +20%): PS_Brand_Core ($182K Rev, 2.9x ROAS) and SOC_Meta_Prospecting ($265K Rev, 4.2x ROAS).",
-            "Scalable / Hidden Gems (Budget Infusion): EM_Alumni_Upsell (16.2x ROAS) and REF_Student_Advocate (6.8x ROAS) are starved for funds.",
-            "Question Marks (Creative Refresh): PS_NonBrand_Analytics ($210K Rev, 2.4x ROAS) has elevated CPA; requires negative keyword pruning.",
-            "Cut Candidates (Slash 30%): DIS_Affinity_Awareness produces low qualified engagement; budget should be redirected to nurture."
+            "Stars (Protect & Scale +20%): PS_Brand_Core ($182K Rev, 7.06x ROAS) and SOC_Meta_Prospecting ($189K Rev, 7.50x ROAS).",
+            "Scalable / Hidden Gems (Budget Infusion): EM_Alumni_Upsell (16.0x ROAS) and REF_Student_Advocate (5.93x ROAS) are starved for funds.",
+            "Question Marks (Creative Refresh): PS_NonBrand_Analytics ($173K Rev, 2.43x ROAS) has elevated CPA; requires negative keyword pruning.",
+            "Cut Candidates (Slash 50%): PS_Competitor_Intercept ($101.2K Spend, 1.78x ROAS, $550.21 CAC) should be defunded to sponsor email/referral."
         ],
         "kpis": [
             ("Portfolio Stars", "3 Campaigns", "Core Revenue Engine"),
-            ("Scalable Gems", "4 Campaigns", "High ROAS / Low Spend"),
-            ("Cut Candidates", "2 Campaigns", "Immediate Savings")
+            ("Scalable Gems", "3 Campaigns", "High ROAS / Low Spend"),
+            ("Cut Candidates", "1 Campaign", "Immediate Savings")
         ]
     },
     {
@@ -211,15 +211,15 @@ SLIDE_DATA = [
         "action_title": "Customer Lifetime Value: High-Quality Channels Deliver Sustainable 3.2x to 7.8x LTV:CAC Ratios",
         "category": "CLV & COHORT DYNAMICS",
         "bullets": [
-            "Repeat Purchase Rate: 12.9% of Paid Social students and 11.0% of Paid Search students enroll in follow-on specialized certifications.",
-            "Historical vs Predictive CLV: Initial course purchase ($1,094) expands to $2,714 over 12 months in the BG/NBD predictive model.",
-            "LTV:CAC Dominance: Display (7.84x), Referral (7.83x), and Paid Social (6.20x) surpass the 3.0x industry benchmark.",
-            "Search Payback: Paid Search LTV:CAC (3.25x) is profitable, but yields lower headroom due to intense auction keyword competition."
+            "Repeat Purchase Rate: 12.0% of students enroll in follow-on specialized certifications, generating $282.3K in repeat revenue.",
+            "Headline CAC vs Cost per Order: Total spend ($426.4K) yields a Headline CAC of $174.05 on 2,450 new students and a Cost per Order of $155.40 on 2,744 total orders.",
+            "Historical CLV: Blended historical revenue per customer is $1,087.68, yielding a healthy 6.25x LTV:CAC ratio.",
+            "Predictive Payback: Forward-looking 12-month BG/NBD model forecasts average student value expanding to $2,714, providing massive headroom."
         ],
         "kpis": [
-            ("Display LTV:CAC", "7.84x", "Predictive: 19.8x"),
-            ("Social LTV:CAC", "6.20x", "Predictive: 15.1x"),
-            ("Search LTV:CAC", "3.25x", "Predictive: 8.06x")
+            ("Headline CAC", "$174.05", "New Student Cost"),
+            ("Cost Per Order", "$155.40", "All Orders Completed"),
+            ("LTV:CAC Ratio", "6.25x", "Strong Portfolio Health")
         ]
     },
     {
@@ -228,13 +228,13 @@ SLIDE_DATA = [
         "category": "BUDGET OPTIMIZATION",
         "bullets": [
             "The Capital Reallocation: Shift -$58,400 (-29.4%) from Paid Search into Email (+$21,250), Referral (+$20,250), Display (+$12,300), and Social (+$4,600).",
-            "Equalizing Marginal ROAS: Email marginal ROAS (4.91x) and Referral (2.61x) vastly exceed Search (1.67x) at current spend levels.",
-            "Projected Return Scenarios: Base Case yields +$224,908 incremental revenue (+13.3% paid lift); Low Case yields +$33,463; High Case yields +$512,074.",
-            "Zero Budget Increase: Total marketing expenditure remains exactly $426,418.04; returns generated solely through portfolio efficiency."
+            "Constrained Reallocation: Marginal ROAS spread is 1.67x (Search at lower bound) to 4.91x (Email at capacity limit); unconstrained channels (Social and Display) equalized at 1.82x.",
+            "Symmetrical Scenarios: Base Case yields +$224,908 incremental revenue ($1,914,446 total); Low Case (0.75x lift) yields +$168,681 ($1,858,219 total); High Case (1.25x lift) yields +$281,135 ($1,970,673 total).",
+            "Zero Budget Increase: Total marketing expenditure remains exactly $426,418.04; returns generated solely through portfolio reallocation."
         ],
         "kpis": [
-            ("Search Reduction", "-$58,400", "-29.4% Capital Shift"),
-            ("Email Expansion", "+$21,250", "+155.1% Budget Boost"),
+            ("Search Reduction", "-$58,400", "Pinned at Lower Bound"),
+            ("Email Expansion", "+$21,250", "Pinned at Capacity Cap"),
             ("Net Base Uplift", "+$224,908", "+13.3% Paid Lift")
         ]
     },
@@ -244,7 +244,7 @@ SLIDE_DATA = [
         "category": "EXECUTION & ROADMAP",
         "bullets": [
             "Phase 1: Matched Geo-Holdout Test (Weeks 1-4): Split 8 matched metro markets (Dallas/San Francisco vs Austin/Seattle).",
-            "Phase 2: Automated Attribution Pipeline (Weeks 3-5): Automate SQL queries in DuckDB/SQLite with weekly Power BI refreshes.",
+            "Phase 2: Automated Attribution Pipeline (Weeks 3-5): Automate SQL queries in DuckDB/SQLite with weekly reporting.",
             "Phase 3: Automated Email Trigger Scaling (Weeks 4-6): Deploy abandoned application and syllabus nurture automation sequences.",
             "Phase 4: Full Portfolio Rebalancing (Week 7+): Deploy final budget reallocation upon confirmation of p < 0.05 causal lift."
         ],

@@ -63,7 +63,7 @@ nb1_cells = [
     md_cell("""# 01. Exploratory Data Analysis & Data Quality Audit
 **Portfolio Project: Multi-Channel Marketing Analytics & Attribution Framework**  
 **Company:** Grito Labs (EdTech Analytics & Decision Science)  
-**Author:** Senior Marketing Analytics Lead & Data Engineer  
+**Author:** J Nikhil ([GitHub: JNikhil11](https://github.com/JNikhil11))  
 
 > **Transparency Note (Synthetic Dataset):**  
 > This dataset was synthetically generated to mimic realistic EdTech multi-channel customer journey behavior (fixed random seed `42`), because public multi-touch datasets (such as the 2017 Criteo bidding dataset) either suffer from broken hosting URLs/auth paywalls or lack unified multi-channel spend (search, social, display, email, referral) mapped to high-ticket course tuition structures ($349–$2,199). Real-world telemetry would include additional offline interactions and cookie consent drops.
@@ -288,14 +288,14 @@ print("=== TOP 8 CONVERTING CUSTOMER PATHS ===")
 for path, convs, share in cursor.fetchall():
     print(f"{path:40} | {convs:>4} orders ({share:>5.2f}%)")
 """, """=== TOP 8 CONVERTING CUSTOMER PATHS ===
-Direct                                   |  338 orders (13.80%)
-Paid Search                              |  282 orders (11.51%)
-Organic Search                           |  187 orders ( 7.63%)
-Paid Social > Email Marketing            |  101 orders ( 4.12%)
-Paid Social > Direct                     |   89 orders ( 3.63%)
-Display Ads > Email Marketing            |   76 orders ( 3.10%)
-Organic Search > Email Marketing         |   72 orders ( 2.94%)
-Paid Search > Direct                     |   68 orders ( 2.78%)"""),
+Paid Social                              |  250 orders (10.20%)
+Paid Search                              |  198 orders ( 8.08%)
+Display Ads                              |  126 orders ( 5.14%)
+Organic Search                           |  123 orders ( 5.02%)
+Referral                                 |   57 orders ( 2.33%)
+Direct                                   |   47 orders ( 1.92%)
+Paid Social > Paid Search                |   43 orders ( 1.76%)
+Paid Search > Direct                     |   41 orders ( 1.67%)"""),
     md_cell("""### Channel Funnel Role & Assist Ratio
 Evaluating whether channels primarily serve as *Originators*, *Assisters*, or *Closers*.
 """),
@@ -407,9 +407,9 @@ print(f"Total Last-Touch Revenue:       ${total_lta:,.2f}")
 print(f"Total Position-Based Revenue:   ${total_pos:,.2f}")
 print(f"Total Markov Chain Revenue:     ${total_mkv:,.2f}")
 print("Reconciliation Delta:           $0.00 (Exact 100% agreement)")
-""", """Total Last-Touch Revenue:       $2,374,133.70
-Total Position-Based Revenue:   $2,374,133.70
-Total Markov Chain Revenue:     $2,374,133.70
+""", """Total Last-Touch Revenue:       $2,382,514.60
+Total Position-Based Revenue:   $2,382,514.60
+Total Markov Chain Revenue:     $2,382,514.60
 Reconciliation Delta:           $0.00 (Exact 100% agreement)"""),
     md_cell("""### 💡 'So What?' — Attribution Insights & Recommended Model
 1. **The Last-Touch Blindspot**: Last-Touch under-credits **Paid Social by +24.9% to +47.6%** and **Display Ads by +29.2%**. Conversely, it over-credits Direct traffic by **-30.5%** (attributing natural brand navigations as marketing wins).
@@ -529,9 +529,9 @@ Referral         |    $19,729.96 |  $39,979.96 | +$20,250.00 |     2.61x |      
    - **Scale Social Prospecting by +$4,600 and Display Retargeting by +$12,300**.
 2. **Quantified Financial Impact**:
    - Total Marketing Budget remains strictly fixed at **$426,418.04** (exact zero-sum constraint).
-   - Net Incremental Revenue generated: **+$224,908.02 (+13.3% lift)** in Base Scenario.
-   - Conservative Low Scenario (-10% execution friction): **+$172,300.00** net gain.
-   - Optimistic High Scenario (+15% upside): **+$287,500.00** net gain.
+   - Net Incremental Revenue generated: **+$224,908.02 (+13.3% lift)** in Base Scenario (Projected Paid Rev: $1,914,445.86).
+   - Conservative Low Scenario (0.75x base lift): **+$168,681.01** net gain (Projected Paid Rev: $1,858,218.85).
+   - Optimistic High Scenario (1.25x base lift): **+$281,135.03** net gain (Projected Paid Rev: $1,970,672.87).
    - Portfolio ROAS expands from **3.96x to 4.49x**.
 3. **De-risking via Incrementality**:
    - Before full deployment, execute a **4-week Geo-Holdout test** in matched metropolitan markets (Dallas vs Austin) using Difference-in-Differences to confirm causal lift.

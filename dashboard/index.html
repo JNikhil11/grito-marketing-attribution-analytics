@@ -226,18 +226,21 @@
       background: #F8FAFC;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 3px 8px;
+    /* Tab switcher */
+    .tab-btn {
+      padding: 4px 10px;
+      font-size: 12px;
+      border: 1px solid var(--border);
+      background: #EDF2F7;
+      color: var(--secondary);
       border-radius: 4px;
-      font-size: 11px;
-      font-weight: 600;
+      cursor: pointer;
     }
-
-    .badge-star { background: #D8F3DC; color: #1B4332; }
-    .badge-scalable { background: #E0E7FF; color: #3730A3; }
-    .badge-qm { background: #FEF3C7; color: #92400E; }
-    .badge-cut { background: #FEE2E2; color: #991B1B; }
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
 
     /* Simulator Sliders */
     .slider-container {
@@ -291,7 +294,7 @@
     </div>
     <div class="header-badge">
       <div>90-Day Cohort: Aug 1 - Oct 31, 2026</div>
-      <div style="font-size:11px; color:#A7D7C5; margin-top:3px;">[Synthetic Dataset: Seed 42 | 16K Students]</div>
+      <div style="font-size:11px; color:#A7D7C5; margin-top:3px;">[Synthetic Dataset: Seed 42 | 16K Journeys]</div>
     </div>
   </div>
 
@@ -312,10 +315,10 @@
 
     <div class="control-group">
       <span class="control-label">Lookback Window:</span>
-      <select id="lookbackSelector">
-        <option value="30">30 Days (Standard EdTech Consideration)</option>
-        <option value="14">14 Days (Accelerated Bootcamps)</option>
-        <option value="7">7 Days (High Urgency Deadlines)</option>
+      <select id="lookbackSelector" onchange="updateLookbackWindow()">
+        <option value="30">30 Days (Standard Consideration - 100% Attributed)</option>
+        <option value="14">14 Days (Accelerated Window)</option>
+        <option value="7">7 Days (High Urgency Window)</option>
       </select>
       <button onclick="window.print()">Print / Export PDF</button>
     </div>
@@ -326,12 +329,12 @@
     <div class="kpi-card navy">
       <div class="kpi-label">Total Paid Spend</div>
       <div class="kpi-value" id="kpiSpend">$426,418</div>
-      <div class="kpi-subtext">17.96% of Total Revenue</div>
+      <div class="kpi-subtext">17.90% of Attributed Revenue</div>
     </div>
     <div class="kpi-card green">
       <div class="kpi-label">Attributed Revenue</div>
-      <div class="kpi-value" id="kpiRevenue">$2,374,134</div>
-      <div class="kpi-subtext" id="kpiModelLabel">Position-Based Model</div>
+      <div class="kpi-value" id="kpiRevenue">$2,382,515</div>
+      <div class="kpi-subtext" id="kpiUnattributed">Unattributed: $0.00 (100% Matched)</div>
     </div>
     <div class="kpi-card green">
       <div class="kpi-label">Blended Paid ROAS</div>
@@ -339,14 +342,19 @@
       <div class="kpi-subtext">Projected Optimized: 4.49x</div>
     </div>
     <div class="kpi-card orange">
-      <div class="kpi-label">Paid Blended CAC</div>
-      <div class="kpi-value" id="kpiCAC">$155.40</div>
-      <div class="kpi-subtext">2,744 Enrolled Students</div>
+      <div class="kpi-label">Headline CAC (Students)</div>
+      <div class="kpi-value" id="kpiCAC">$174.05</div>
+      <div class="kpi-subtext">Cost Per Order (CPO): $155.40</div>
+    </div>
+    <div class="kpi-card navy">
+      <div class="kpi-label">Enrolled Students</div>
+      <div class="kpi-value">2,450</div>
+      <div class="kpi-subtext">2,744 Total Orders (294 Repeat)</div>
     </div>
     <div class="kpi-card navy">
       <div class="kpi-label">Multi-Touch Share</div>
       <div class="kpi-value">69.1%</div>
-      <div class="kpi-subtext">1,897 of 2,744 Journeys (&ge;2 Touches)</div>
+      <div class="kpi-subtext">1,693 of 2,450 Journeys (&ge;2 Touches)</div>
     </div>
   </div>
 
@@ -355,7 +363,7 @@
     <div class="card col-7">
       <div class="card-title">
         <span>Channel Attributed Revenue vs Media Spend</span>
-        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">Dynamic Attribution Slicer</span>
+        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);" id="kpiModelLabel">Position-Based (U-Shaped)</span>
       </div>
       <div class="chart-container">
         <canvas id="channelChart"></canvas>
@@ -378,7 +386,7 @@
     <div class="card col-7">
       <div class="card-title">
         <span>Attribution Comparison Matrix by Channel</span>
-        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">Values in USD ($)</span>
+        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">Initial Enrollments ($2,382,515 Total)</span>
       </div>
       <div style="overflow-x: auto;">
         <table id="matrixTable">
@@ -387,9 +395,10 @@
               <th>Channel</th>
               <th>Spend</th>
               <th>Last-Touch</th>
-              <th>U-Shaped</th>
+              <th>Position-Based</th>
               <th>Markov Chain</th>
-              <th>Model ROAS</th>
+              <th>Shapley Value</th>
+              <th>Pos ROAS</th>
               <th>Shift vs LTA</th>
             </tr>
           </thead>
@@ -402,26 +411,22 @@
 
     <div class="card col-5">
       <div class="card-title">
-        <span>Top 8 Converting Customer Paths</span>
-        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">Journey Sequences</span>
+        <span>Top Converting Journey Sequences</span>
+        <div>
+          <button class="tab-btn active" id="tabMulti" onclick="switchPathTab('multi')">Multi-Touch (2+)</button>
+          <button class="tab-btn" id="tabAll" onclick="switchPathTab('all')">All Paths</button>
+        </div>
       </div>
-      <table>
+      <table id="pathTable">
         <thead>
           <tr>
             <th>Path Sequence</th>
-            <th>Orders</th>
-            <th>Share</th>
+            <th>Conversions</th>
+            <th>Share (%)</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Paid Social</td><td>286</td><td>10.4%</td></tr>
-          <tr><td>Paid Search</td><td>219</td><td>8.0%</td></tr>
-          <tr><td>Display Ads</td><td>142</td><td>5.2%</td></tr>
-          <tr><td>Organic Search</td><td>140</td><td>5.1%</td></tr>
-          <tr><td>Referral</td><td>63</td><td>2.3%</td></tr>
-          <tr><td>Direct</td><td>57</td><td>2.1%</td></tr>
-          <tr><td>Paid Search &gt; Direct</td><td>50</td><td>1.8%</td></tr>
-          <tr><td>Paid Social &gt; Paid Search</td><td>48</td><td>1.7%</td></tr>
+          <!-- Populated by JS -->
         </tbody>
       </table>
     </div>
@@ -442,66 +447,109 @@
       <div class="card-title">
         <span>Interactive Budget Optimization Simulator (Hill Saturation)</span>
       </div>
-      <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">
-        Adjust proposed channel budget shifts below to simulate real-time portfolio incremental revenue under diminishing marginal returns:
+      <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
+        Adjust channel spend below to simulate real-time portfolio incremental revenue under diminishing marginal returns:
       </p>
 
       <div class="slider-container">
         <span class="slider-label">Paid Search ($):</span>
-        <input type="range" min="100000" max="250000" value="140010" class="slider-input" id="slideSearch" oninput="runBudgetSim()">
+        <input type="range" min="140000" max="220000" value="140010" class="slider-input" id="slideSearch" oninput="runBudgetSim()">
         <span class="slider-val" id="valSearch">$140,010</span>
       </div>
       <div class="slider-container">
         <span class="slider-label">Paid Social ($):</span>
-        <input type="range" min="100000" max="220000" value="147551" class="slider-input" id="slideSocial" oninput="runBudgetSim()">
+        <input type="range" min="120000" max="200000" value="147551" class="slider-input" id="slideSocial" oninput="runBudgetSim()">
         <span class="slider-val" id="valSocial">$147,551</span>
       </div>
       <div class="slider-container">
         <span class="slider-label">Email Mktg ($):</span>
-        <input type="range" min="8000" max="40000" value="34950" class="slider-input" id="slideEmail" oninput="runBudgetSim()">
+        <input type="range" min="10000" max="35000" value="34950" class="slider-input" id="slideEmail" oninput="runBudgetSim()">
         <span class="slider-val" id="valEmail">$34,950</span>
       </div>
       <div class="slider-container">
         <span class="slider-label">Display Ads ($):</span>
-        <input type="range" min="25000" max="80000" value="63926" class="slider-input" id="slideDisplay" oninput="runBudgetSim()">
+        <input type="range" min="30000" max="75000" value="63926" class="slider-input" id="slideDisplay" oninput="runBudgetSim()">
         <span class="slider-val" id="valDisplay">$63,926</span>
       </div>
       <div class="slider-container">
         <span class="slider-label">Referral ($):</span>
-        <input type="range" min="12000" max="45000" value="39980" class="slider-input" id="slideReferral" oninput="runBudgetSim()">
+        <input type="range" min="15000" max="40000" value="39980" class="slider-input" id="slideReferral" oninput="runBudgetSim()">
         <span class="slider-val" id="valReferral">$39,980</span>
       </div>
 
-      <div style="background:#F8FAFC; padding:16px; border-radius:8px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="background:#F8FAFC; padding:14px; border-radius:8px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
         <div>
-          <div style="font-size:12px; color:var(--text-muted); font-weight:600;">SIMULATED INCREMENTAL REVENUE:</div>
-          <div style="font-size:24px; font-weight:700; color:var(--success);" id="simIncRev">+$224,908</div>
+          <div style="font-size:11px; color:var(--text-muted); font-weight:600;">SIMULATED INCREMENTAL REVENUE:</div>
+          <div style="font-size:22px; font-weight:700; color:var(--success);" id="simIncRev">+$224,908</div>
+          <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Scenarios: Low +$168,681 | High +$281,135</div>
         </div>
-        <div>
-          <div style="font-size:12px; color:var(--text-muted); font-weight:600;">SIMULATED TOTAL SPEND:</div>
-          <div style="font-size:18px; font-weight:700; color:var(--primary);" id="simTotalSpend">$426,417</div>
+        <div style="text-align:right;">
+          <div style="font-size:11px; color:var(--text-muted); font-weight:600;">PORTFOLIO NET SPEND:</div>
+          <div style="font-size:18px; font-weight:700; color:var(--primary);" id="simTotalSpend">$426,418</div>
+          <div style="font-size:11px; color:var(--success); font-weight:600;">$0.00 Net Budget Shift</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="footer-note">
-    Grito Labs Marketing Analytics Framework &bull; Synthetic dataset generated to mimic realistic EdTech multi-channel behavior (Seed 42) &bull; 16,000 Students &bull; 40,806 Touchpoints &bull; 2,744 Enrollments
+    Grito Labs Marketing Analytics Framework &bull; Designed & Built by <strong><a href="https://github.com/JNikhil11" target="_blank" style="color:var(--secondary); text-decoration:none;">J Nikhil</a></strong> &bull; Synthetic dataset generated to mimic realistic EdTech multi-channel behavior (Seed 42) &bull; 16,000 Journeys &bull; 40,806 Touchpoints &bull; 2,450 New Students &bull; 2,744 Total Orders
   </div>
 
   <script>
-    // Data structures populated directly from Python analytics engine (Seed 42)
+    // Master channel data verified across Python, SQL, and CSV exports (Total: $2,382,514.60)
     const CHANNEL_DATA = {
-      "Paid Search": { spend: 198410.22, lta: 506125.30, fta: 577728.50, linear: 530926.48, time_decay: 527671.51, position_based: 536017.28, markov: 499496.86, shapley: 371709.08, first: 3859, assist: 2608, last: 1969 },
-      "Paid Social": { spend: 142951.06, lta: 387351.40, fta: 792930.80, linear: 544133.51, time_decay: 522161.76, position_based: 571912.22, markov: 483973.77, shapley: 330100.14, first: 5462, assist: 1572, last: 1115 },
-      "Display Ads": { spend: 51626.47,  lta: 198153.30, fta: 364869.40, linear: 259603.06, time_decay: 250866.71, position_based: 272976.29, markov: 256107.78, shapley: 376027.58, first: 2564, assist: 700,  last: 481 },
-      "Email Marketing": { spend: 13700.33, lta: 333974.30, fta: 0.0,      linear: 220760.22, time_decay: 237496.56, position_based: 191562.81, markov: 315430.01, shapley: 2882.46,   first: 0,    assist: 3028, last: 2444 },
-      "Referral": { spend: 19729.96,    lta: 100378.90, fta: 137753.70, linear: 114991.21, time_decay: 113800.39, position_based: 117069.24, markov: 122710.09, shapley: 457255.41, first: 960,  assist: 422,  last: 332 },
-      "Organic Search": { spend: 0.0,   lta: 302134.50, fta: 351110.40, linear: 321479.21, time_decay: 319037.54, position_based: 324750.26, markov: 319225.76, shapley: 425509.66, first: 2223, assist: 1536, last: 1170 },
-      "Direct": { spend: 0.0,           lta: 554396.90, fta: 158121.80, linear: 390620.91, time_decay: 411480.14, position_based: 368226.50, markov: 385570.34, shapley: 419030.27, first: 932,  assist: 3978, last: 3451 }
+      "Paid Search": { spend: 198410.22, lta: 506125.30, fta: 577728.50, linear: 530926.48, time_decay: 527671.51, position_based: 536017.28, markov: 499496.86, shapley: 528489.28, first: 3859, assist: 2608, last: 1969 },
+      "Paid Social": { spend: 142951.06, lta: 387351.40, fta: 792930.80, linear: 544133.51, time_decay: 522161.76, position_based: 571912.22, markov: 483973.77, shapley: 542993.81, first: 5462, assist: 1572, last: 1115 },
+      "Display Ads": { spend: 51626.47,  lta: 198153.30, fta: 364869.40, linear: 259603.06, time_decay: 250866.71, position_based: 272976.29, markov: 256107.78, shapley: 268434.33, first: 2564, assist: 700,  last: 481 },
+      "Email Marketing": { spend: 13700.33, lta: 333974.30, fta: 0.0,      linear: 220760.22, time_decay: 237496.56, position_based: 191562.81, markov: 315430.01, shapley: 229022.16, first: 0,    assist: 3028, last: 2444 },
+      "Referral": { spend: 19729.96,    lta: 100378.90, fta: 137753.70, linear: 114991.21, time_decay: 113800.39, position_based: 117069.24, markov: 122710.09, shapley: 123028.91, first: 960,  assist: 422,  last: 332 },
+      "Organic Search": { spend: 0.0,   lta: 302134.50, fta: 351110.40, linear: 321479.21, time_decay: 319037.54, position_based: 324750.26, markov: 319225.76, shapley: 329584.58, first: 2223, assist: 1536, last: 1170 },
+      "Direct": { spend: 0.0,           lta: 554396.90, fta: 158121.80, linear: 390620.91, time_decay: 411480.14, position_based: 368226.50, markov: 385570.34, shapley: 360961.53, first: 932,  assist: 3978, last: 3451 }
     };
 
+    const PATHS_MULTITOUCH = [
+      { seq: "Paid Social > Paid Search", conv: 43, share: "2.61%" },
+      { seq: "Paid Search > Direct", conv: 41, share: "2.49%" },
+      { seq: "Paid Social > Organic Search", conv: 35, share: "2.12%" },
+      { seq: "Paid Social > Email Marketing", conv: 33, share: "2.00%" },
+      { seq: "Paid Search > Email Marketing", conv: 32, share: "1.94%" },
+      { seq: "Organic Search > Email Marketing", conv: 32, share: "1.94%" },
+      { seq: "Paid Social > Email Marketing > Direct", conv: 27, share: "1.64%" },
+      { seq: "Display Ads > Paid Social", conv: 25, share: "1.52%" }
+    ];
+
+    const PATHS_ALL = [
+      { seq: "Paid Social", conv: 250, share: "10.20%" },
+      { seq: "Paid Search", conv: 198, share: "8.08%" },
+      { seq: "Display Ads", conv: 126, share: "5.14%" },
+      { seq: "Organic Search", conv: 123, share: "5.02%" },
+      { seq: "Referral", conv: 57, share: "2.33%" },
+      { seq: "Direct", conv: 47, share: "1.92%" },
+      { seq: "Paid Social > Paid Search", conv: 43, share: "1.76%" },
+      { seq: "Paid Search > Direct", conv: 41, share: "1.67%" }
+    ];
+
+    let currentPathTab = 'multi';
     let channelChart, roleChart, quadrantChart;
+
+    function renderPathTable() {
+      const list = currentPathTab === 'multi' ? PATHS_MULTITOUCH : PATHS_ALL;
+      const tbody = document.querySelector('#pathTable tbody');
+      tbody.innerHTML = '';
+      list.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><strong>${p.seq}</strong></td><td>${p.conv}</td><td>${p.share}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function switchPathTab(tab) {
+      currentPathTab = tab;
+      document.getElementById('tabMulti').className = 'tab-btn ' + (tab === 'multi' ? 'active' : '');
+      document.getElementById('tabAll').className = 'tab-btn ' + (tab === 'all' ? 'active' : '');
+      renderPathTable();
+    }
 
     function initCharts() {
       // 1. Channel Chart
@@ -615,6 +663,7 @@
       });
 
       renderMatrixTable('position_based');
+      renderPathTable();
     }
 
     function renderMatrixTable(modelKey) {
@@ -633,6 +682,7 @@
           <td>$${d.lta.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
           <td>$${d.position_based.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
           <td>$${d.markov.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>$${d.shapley.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
           <td><strong>${roas}</strong></td>
           <td style="color:${shiftColor}; font-weight:700;">${shift >= 0 ? '+' : ''}${shift}%</td>
         `;
@@ -662,6 +712,22 @@
       renderMatrixTable(model);
     }
 
+    function updateLookbackWindow() {
+      const lb = document.getElementById('lookbackSelector').value;
+      const unattribElem = document.getElementById('kpiUnattributed');
+      const revElem = document.getElementById('kpiRevenue');
+      if (lb === '30') {
+        revElem.innerText = '$2,382,515';
+        unattribElem.innerText = 'Unattributed: $0.00 (100% Matched)';
+      } else if (lb === '14') {
+        revElem.innerText = '$2,351,120';
+        unattribElem.innerText = 'Unattributed: $31,395 (1.3% Outside 14d)';
+      } else if (lb === '7') {
+        revElem.innerText = '$2,284,400';
+        unattribElem.innerText = 'Unattributed: $98,115 (4.1% Outside 7d)';
+      }
+    }
+
     function runBudgetSim() {
       const sSearch = parseFloat(document.getElementById('slideSearch').value);
       const sSocial = parseFloat(document.getElementById('slideSocial').value);
@@ -686,7 +752,7 @@
       const rRef    = 350000 * Math.pow(sRef, 1.20) / (Math.pow(45000, 1.20) + Math.pow(sRef, 1.20));
 
       const totalSimRev = rSearch + rSocial + rEmail + rDisp + rRef;
-      const basePaidRev = 1689538.44;
+      const basePaidRev = 1689537.84;
       const incRev = totalSimRev - basePaidRev;
 
       const incFormatted = (incRev >= 0 ? '+' : '-') + '$' + Math.abs(Math.round(incRev)).toLocaleString();

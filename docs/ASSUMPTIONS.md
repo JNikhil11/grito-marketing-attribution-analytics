@@ -28,7 +28,7 @@ The analytical outputs, SQL queries, predictive CLV models, and budget optimizat
    - Email Marketing: Infrastructure and nurture distribution expense ($0.78 blended CPC equivalent; $13,700.33 total spend).
    - Referral: Fixed partner commission / referral reward ($2.77 blended cost per click; $19,729.96 total spend).
    - Organic Search & Direct: Zero direct marginal media expense ($0.00). ROAS is formally documented as `N/A` (unpaid) rather than infinity, avoiding division-by-zero distortion.
-9. **No Revenue Discounts Without Documentation:** Course list prices are $349 (Foundation), $999 (Bootcamp), and $2,199 (Executive Fellowship). Occasional promotional pricing (10% discount) is captured directly at the order level. Total verified revenue across 2,744 orders is **$2,374,133.70**.
+9. **No Revenue Discounts Without Documentation:** Course list prices are $349 (Foundation), $999 (Bootcamp), and $2,199 (Executive Fellowship). Occasional promotional pricing (10% discount) is captured directly at the order level. Total verified revenue across 2,744 orders is **$2,382,514.60**.
 
 ### 4. Attribution Modeling Parameters
 10. **Time-Decay Half-Life:** Fixed at $\tau = 7.0$ days. This reflects the empirical 5.2-day average consideration latency observed in the journey data.

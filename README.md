@@ -8,7 +8,7 @@
 [![Live Dashboard](https://img.shields.io/badge/Dashboard-GitHub%20Pages-brightgreen.svg)](https://jnikhil11.github.io/grito-marketing-attribution-analytics/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
 
-> **Dataset Authenticity Notice:** Synthetic dataset generated to mimic realistic EdTech multi-channel marketing behavior (Seed 42; 16,000 students, 40,806 touchpoints, 2,744 orders). Used because legacy public attribution mirrors (e.g. Criteo 2017) return HTTP 404 or require gated enterprise credentials; this guarantees 100% deterministic, zero-setup mathematical reproducibility.
+> **Dataset Authenticity Notice:** Synthetic dataset generated to mimic realistic EdTech multi-channel marketing behavior (Seed 42; 16,000 student journeys, 40,806 touchpoints, 2,450 new students, 2,744 total orders). Used because legacy public attribution mirrors (e.g. Criteo 2017) return HTTP 404 or require gated enterprise credentials; this guarantees 100% deterministic, zero-setup mathematical reproducibility.
 
 ---
 
@@ -19,7 +19,7 @@ This project delivers an end-to-end multi-channel marketing analytics and attrib
 
 ### Top 3 Quantified Insights
 1. **The Attribution Blindspot:** Last-Touch attribution severely undervalues **Paid Social by +47.6% (+$184,560.82)** and **Display Ads by +37.8% (+$74,822.99)**, while over-attributing Direct navigation by **-33.6% (-$186,170.40)**. Evaluating Paid Social solely on closing clicks penalizes the exact feeder channel generating 48% of pipeline discovery.
-2. **Multi-Touch Consideration Dominance:** Exactly **69.1% of conversions** (1,897 of 2,744) involve multi-channel journeys. High-converting flows such as `Paid Social > Email Marketing` and `Paid Search > Direct` show that upper-funnel discovery requires structured email nurturing before enrollment occurs.
+2. **Multi-Touch Consideration Dominance:** Exactly **69.1% of student journeys** (1,693 of 2,450 new students) involve multi-channel touchpoint sequences spanning an average of 5.2 days. The top converting multi-touch paths are `Paid Social > Paid Search` (43 conversions, 2.61% of multi-touch), `Paid Search > Direct` (41 conversions, 2.49%), `Paid Social > Organic Search` (35 conversions, 2.12%), and `Paid Social > Email Marketing` (33 conversions, 2.00%). Upper-funnel discovery on Paid Social and Display continuously feeds mid-funnel nurture and closing search/direct conversions.
 3. **Optimized Zero-Sum Reallocation Unlocks +$224.9K Revenue:** Paid Search is operating in severe diminishing returns (Marginal ROAS: **1.67x**, CAC: **$336.86**). Reallocating **-$58,400.00** from Search into high-marginal-return channels (**+$21,250** Email, **+$20,250** Referral, **+$12,300** Display, **+$4,600** Social) yields **+$224,908.02 in net incremental revenue (+13.3% paid lift)** at an exact **$0.00 net budget change**, expanding blended paid ROAS from **3.96x to 4.49x**.
 
 ---
@@ -54,7 +54,7 @@ python src/run_sql.py
 # 4. Run algorithmic attribution (Markov & Shapley), CLV, and budget optimization
 python src/run_attribution_analysis.py
 
-# 5. Run full automated QA verification suite (asserts zero defects and exact reconciliation)
+# 5. Run full automated QA verification suite (asserts all automated checks pass and exact reconciliation)
 python src/qa_verification.py
 ```
 
@@ -68,13 +68,13 @@ Across the 90-day cohort, total marketing spend of **$426,418.04** generated **$
 
 | Marketing Channel | Total Spend ($) | Last-Touch Rev ($) | Position-Based Rev ($) | Markov Chain Rev ($) | Shapley Rev ($) | Position ROAS | LTA ROAS | Rev Shift vs LTA (%) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Paid Search** | \$198,410.22 | \$506,125.30 | \$536,017.28 | \$499,496.86 | \$371,709.08 | 2.70x | 2.55x | +5.9% |
-| **Paid Social** | \$142,951.06 | \$387,351.40 | **\$571,912.22** | **\$483,973.77** | \$330,100.14 | **4.00x** | 2.71x | **+47.6%** |
-| **Display Ads** | \$51,626.47 | \$198,153.30 | \$272,976.29 | \$256,107.78 | \$376,027.58 | 5.29x | 3.84x | +37.8% |
-| **Email Marketing** | \$13,700.33 | \$333,974.30 | \$191,562.81 | \$315,430.01 | \$2,882.46 | 13.98x | 24.38x | -42.6% |
-| **Referral** | \$19,729.96 | \$100,378.90 | \$117,069.24 | \$122,710.09 | \$457,255.41 | 5.93x | 5.09x | +16.6% |
-| **Organic Search** | \$0.00 | \$302,134.50 | \$324,750.26 | \$319,225.76 | \$425,509.66 | N/A | N/A | +7.5% |
-| **Direct** | \$0.00 | \$554,396.90 | \$368,226.50 | \$385,570.34 | \$419,030.27 | N/A | N/A | -33.6% |
+| **Paid Search** | \$198,410.22 | \$506,125.30 | \$536,017.28 | \$499,496.86 | \$528,489.28 | 2.70x | 2.55x | +5.9% |
+| **Paid Social** | \$142,951.06 | \$387,351.40 | **\$571,912.22** | **\$483,973.77** | **\$542,993.81** | **4.00x** | 2.71x | **+47.6%** |
+| **Display Ads** | \$51,626.47 | \$198,153.30 | \$272,976.29 | \$256,107.78 | \$268,434.33 | 5.29x | 3.84x | +37.8% |
+| **Email Marketing** | \$13,700.33 | \$333,974.30 | \$191,562.81 | \$315,430.01 | \$229,022.16 | 13.98x | 24.38x | -42.6% |
+| **Referral** | \$19,729.96 | \$100,378.90 | \$117,069.24 | \$122,710.09 | \$123,028.91 | 5.93x | 5.09x | +16.6% |
+| **Organic Search** | \$0.00 | \$302,134.50 | \$324,750.26 | \$319,225.76 | \$329,584.58 | N/A | N/A | +7.5% |
+| **Direct** | \$0.00 | \$554,396.90 | \$368,226.50 | \$385,570.34 | \$360,961.53 | N/A | N/A | -33.6% |
 | **TOTAL** | **\$426,418.04** | **\$2,382,514.60** | **\$2,382,514.60** | **\$2,382,514.60** | **\$2,382,514.60** | **3.96x** | **3.96x** | **Reconciled ($0.00)** |
 
 ---
@@ -125,7 +125,7 @@ Grito_Marketing_Analytics/
 │   ├── REFERENCES.md        # Academic literature citations & software licenses
 │   ├── DATA_CARD.md         # Data provenance, schema & quality audit
 │   ├── OPTIMIZATION_STRATEGY.md # Standalone 3-page executive decision memo
-│   └── QA_REPORT.md         # Full automated QA test run log (Zero defects)
+│   └── QA_REPORT.md         # Full automated QA test run log (All automated checks verified)
 ├── src/
 │   ├── generate_dataset.py  # Deterministic telemetry generator (Seed 42)
 │   ├── run_sql.py           # SQL pipeline runner & CSV exporter
@@ -162,8 +162,10 @@ Solving the Karush-Kuhn-Tucker (KKT) constrained optimization problem under a **
 
 ### Projected Return Scenarios
 - **Base Case (Expected Execution):** Total paid revenue rises from \$1,689,538.44 to **\$1,914,446.46** (+$224,908.02 net incremental revenue, +13.3% lift).
-- **Low Scenario (-10% Market Friction):** Net incremental gain of **+$33,462.83** ($1,723,001.27 total paid revenue).
-- **High Scenario (+15% Creative Upside):** Net incremental gain of **+$512,074.30** ($2,201,612.74 total paid revenue).
+- **Low Case (0.75x Base Lift):** Accounting for -25% market friction, net incremental gain is **+$168,681.01** (**$1,858,218.85** total paid revenue; 4.36x ROAS).
+- **High Case (1.25x Base Lift):** Accounting for +25% creative upside and list expansion, net incremental gain is **+$281,135.03** (**$1,970,672.87** total paid revenue; 4.62x ROAS).
+
+*Budget Optimization Equilibrium Note:* Search is pinned at its minimum operational bound ($140K, marginal ROAS 1.67x) to preserve brand defense, while Email and Referral are pinned at their respective maximum capacity limits ($35K and $40K). The unconstrained channels (Social and Display) reach exact equalized equilibrium at marginal ROAS 1.82x.
 
 ---
 
@@ -181,6 +183,7 @@ Full audit logs are documented in [docs/QA_REPORT.md](docs/QA_REPORT.md).
 ---
 
 ## Author & Submission Details
-- **Candidate:** Senior Marketing Analytics Lead & Data Engineer
+- **Candidate:** **J Nikhil**
+- **GitHub:** [https://github.com/JNikhil11](https://github.com/JNikhil11)
 - **Target Organization:** Grito Labs
 - **Evaluation Criteria:** Analytical Depth, SQL Proficiency, Attribution Methodology, Accuracy of Insights, Business Interpretation, Clarity of Presentation.

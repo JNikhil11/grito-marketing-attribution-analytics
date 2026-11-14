@@ -8,6 +8,7 @@ Description: End-to-end Python attribution analysis runner:
              - Cross-checks SQL and Python numerical consistency
              - BG/NBD + Gamma-Gamma Predictive CLV
              - Budget Reallocation via Hill Saturation Optimization
+             - Exports Top Converting Customer Paths (Overall and Multi-Touch Only)
 """
 
 import os
@@ -15,7 +16,7 @@ import sys
 import sqlite3
 import csv
 from datetime import datetime
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 from attribution_models import (
     compute_rule_based_attribution,
@@ -45,7 +46,7 @@ def load_data_from_db():
     """)
     rows = cursor.fetchall()
 
-    # Load conversion records
+    # Load conversion records (Initial cycle 1 enrollments for attribution)
     cursor.execute("""
     SELECT 
         conversion_id,
@@ -115,7 +116,7 @@ def main():
         if cid in conv_dict:
             conv_info = conv_dict[cid]
             c_time = datetime.strptime(conv_info['timestamp'], "%Y-%m-%d %H:%M:%S")
-            # Calculate days_before for each touch
+            # Calculate days_before for each touch within 30-day lookback window
             valid_touches = []
             for t in touches:
                 t_time = datetime.strptime(t['timestamp'], "%Y-%m-%d %H:%M:%S")
@@ -178,8 +179,8 @@ def main():
         roas_mkv = round(r_mkv / sp, 2) if sp > 0 else 'N/A'
         roas_pos = round(r_pos / sp, 2) if sp > 0 else 'N/A'
         
-        # Shift %: (Markov - LTA) / LTA
-        shift_pct = round(((r_mkv - r_lta) / r_lta) * 100.0, 1) if r_lta > 0 else 0.0
+        # Shift %: (Position-Based - LTA) / LTA
+        shift_pct = round(((r_pos - r_lta) / r_lta) * 100.0, 1) if r_lta > 0 else 0.0
 
         master_matrix.append({
             'channel_name': ch,
@@ -219,7 +220,7 @@ def main():
     for r in table_rows:
         print(" | ".join(f"{str(r[i]):<{col_w[i]}}" for i in range(len(headers))))
 
-    # Export to Power BI exports
+    # Export Master Matrix
     out_master = os.path.join(EXPORTS_DIR, "attribution_master_comparison.csv")
     with open(out_master, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=master_matrix[0].keys())
@@ -235,7 +236,6 @@ def main():
 
     # 5. Customer Lifetime Value (BG/NBD + Gamma-Gamma)
     print("\n[5/5] Fitting Predictive CLV Model (BG/NBD + Gamma-Gamma)...")
-    # Prepare customer history dicts
     clv_histories = []
     end_date = datetime(2026, 11, 1)
     for r in clv_rows:
@@ -311,7 +311,35 @@ def main():
         writer.writeheader()
         writer.writerows(opt_results)
     print(f"[Exported] {out_opt}")
-    
+
+    # 7. Export Top Converting Customer Paths (Overall and Multi-Touch Only)
+    path_counts_overall = Counter()
+    path_counts_multi = Counter()
+    total_conv = len(converting_journeys)
+    for j in converting_journeys:
+        p_str = " > ".join([t['channel_name'] for t in j['touchpoints']])
+        path_counts_overall[p_str] += 1
+        if len(j['touchpoints']) >= 2:
+            path_counts_multi[p_str] += 1
+            
+    total_multi = sum(path_counts_multi.values())
+
+    out_paths_overall = os.path.join(EXPORTS_DIR, "path_summary_overall.csv")
+    with open(out_paths_overall, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["path_sequence", "conversions", "share_pct", "path_rank"])
+        for rank, (p, cnt) in enumerate(path_counts_overall.most_common(20), 1):
+            writer.writerow([p, cnt, round((cnt / total_conv) * 100.0, 2), rank])
+    print(f"[Exported] {out_paths_overall}")
+
+    out_paths_multi = os.path.join(EXPORTS_DIR, "path_summary_multitouch.csv")
+    with open(out_paths_multi, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["path_sequence", "conversions", "share_of_all_pct", "share_of_multitouch_pct", "path_rank"])
+        for rank, (p, cnt) in enumerate(path_counts_multi.most_common(20), 1):
+            writer.writerow([p, cnt, round((cnt / total_conv) * 100.0, 2), round((cnt / total_multi) * 100.0, 2), rank])
+    print(f"[Exported] {out_paths_multi}")
+
     print("\n--- OPTIMIZATION SUMMARY ---")
     for k, v in opt_summary.items():
         print(f"  {k:30}: {v}")

@@ -1,7 +1,7 @@
 # End-to-End Analytical Methodology & Attribution Framework
 
 **Project:** Multi-Channel Marketing Analytics & Attribution Framework  
-**Author:** Senior Marketing Analytics Lead & Data Engineer  
+**Author:** J Nikhil ([GitHub: JNikhil11](https://github.com/JNikhil11))  
 **Client / Evaluator:** Grito Labs (EdTech Analytics & Decision Science)  
 **Version:** 1.0 (Production Release)  
 
@@ -65,7 +65,7 @@ This framework replaces myopic heuristics with a multi-touch attribution engine 
                                        v
 +---------------------------------------------------------------------------------+
 |                         RECONCILIATION & AUDIT PASS                             |
-|   Assert: Sum(Attributed Revenue) == Ground Truth Total Revenue ($2,374,133.70)  |
+|   Assert: Sum(Attributed Revenue) == Ground Truth Total Revenue ($2,382,514.60)  |
 |   Assert: SQL Revenue Metrics == Python Revenue Metrics (Zero Discrepancy)      |
 +---------------------------------------------------------------------------------+
                                        |
