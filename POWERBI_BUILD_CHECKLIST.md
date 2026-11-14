@@ -51,7 +51,7 @@ Create a Dedicated Measures Table `_Measures` and verify each metric against the
   ```dax
   Total Revenue = SUM(fact_conversions[order_value])
   ```
-  - *Expected Value*: **$2,374,133.70** ($\pm \$0.01$)
+  - *Expected Value*: **$2,382,514.60** ($\pm \$0.01$)
 - [ ] **Blended Paid ROAS**:
   ```dax
   Blended Paid ROAS = 
@@ -96,7 +96,7 @@ Create a Dedicated Measures Table `_Measures` and verify each metric against the
   - [ ] Card 1: `Total Paid Spend` $\to$ **$426.4K** (Subtext: "17.96% of Total Revenue")
   - [ ] Card 2: `Attributed Revenue` $\to$ **$2.37M** (Subtext: "Position-Based Model")
   - [ ] Card 3: `Blended Paid ROAS` $\to$ **3.96x** (Subtext: "Projected: 4.49x")
-  - [ ] Card 4: `Paid Blended CAC` $\to$ **$155.40** (Subtext: "2,744 Enrolled Students")
+  - [ ] Card 4: `Headline CAC` $\to$ **$174.05** (Subtext: "Unique New Students | CPO: $155.40")
   - [ ] Card 5: `Multi-Touch Share` $\to$ **69.1%** (Subtext: "Journeys $\ge$ 2 Touches")
 - [ ] **Chart 1: Clustered Column Chart** (`Attributed Revenue vs Media Spend`):
   - [ ] X-axis: Channel Name
@@ -112,7 +112,7 @@ Create a Dedicated Measures Table `_Measures` and verify each metric against the
   - [ ] Rows: `channel_name`
   - [ ] Columns / Values: `Spend`, `Last-Touch Rev`, `Position-Based Rev`, `Markov Rev`, `Model ROAS`, `% Delta vs Last Touch`
   - [ ] Conditional Formatting: Delta $>0$ (Green), Delta $<0$ (Red).
-  - [ ] Total Row check: Last-Touch ($2,374,133.70) = Position-Based ($2,374,133.70) = Markov ($2,374,133.70). Zero pennies leaked.
+  - [ ] Total Row check: Last-Touch ($2,382,514.60) = Position-Based ($2,382,514.60) = Markov ($2,382,514.60). Zero pennies leaked.
 
 ### Page 2: Customer Journey & Campaign Performance
 - [ ] **Top Paths Table**:

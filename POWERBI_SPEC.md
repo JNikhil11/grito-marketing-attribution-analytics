@@ -2,11 +2,12 @@
 ## Comprehensive Power BI Specification & Implementation Guide
 
 **Document Version:** 2.0 (Verified Seed 42 Data Run)  
+**Author:** J Nikhil ([GitHub: JNikhil11](https://github.com/JNikhil11))
 **Prepared For:** Grito Labs Analytics Leadership & Evaluation Committee  
 **Build Time Benchmark:** ~2 Hours  
 **Preferred Tooling:** Power BI Desktop (May 2024 or newer)  
 **Data Sources:** CSV files located in `data/powerbi_exports/`  
-**Dataset Nature:** Synthetic benchmark dataset generated to mimic realistic EdTech multi-channel behavior (Seed 42, 16,000 customers, 40,806 touchpoints, 2,744 enrollments).
+**Dataset Nature:** Synthetic benchmark dataset generated to mimic realistic EdTech multi-channel behavior (Seed 42, 16,000 customers, 40,806 touchpoints, 2,450 new students, 2,744 total enrollments).
 
 ---
 
@@ -88,8 +89,11 @@ COUNTROWS(fact_conversions)
 Total Revenue = 
 SUM(fact_conversions[order_value])
 
-Blended Paid CAC = 
-DIVIDE([Total Spend], [Total Conversions], 0)
+Headline CAC = 
+DIVIDE([Total Spend], DISTINCTCOUNT(dim_customer[customer_id]), 0)
+
+Cost Per Order = 
+DIVIDE([Total Spend], COUNT(fact_conversions[conversion_id]), 0)
 
 Blended Paid ROAS = 
 DIVIDE(
@@ -180,7 +184,7 @@ Repeat Purchase Rate =
 DIVIDE(SUM(clv_predictive_summary[repeat_customers]), SUM(clv_predictive_summary[acquired_customers]), 0)
 
 LTV to CAC Ratio = 
-DIVIDE([Historical CLV], [Blended Paid CAC], BLANK())
+DIVIDE([Historical CLV], [Headline CAC], BLANK())
 ```
 
 ---
@@ -191,10 +195,10 @@ DIVIDE([Historical CLV], [Blended Paid CAC], BLANK())
 - **Header:** Title: "Grito Labs Marketing Analytics | Macro Channel Performance & Unit Economics" + Date Slicer (Aug 1 - Oct 31, 2026).
 - **Row 1 (KPI Cards):**
   1. Total Paid Spend: `$426,418` (17.96% of Total Revenue)
-  2. Total Attributed Revenue: `$2,374,134` (100% Reconciled)
+  2. Total Attributed Revenue: `$2,382,515` (100% Reconciled to Initial Course Revenue; $0 Unattributed)
   3. Blended Paid ROAS: `3.96x` (Base Optimized: `4.49x`)
-  4. Blended Paid CAC: `$155.40`
-  5. Multi-Touch Share: `69.1%` (1,897 / 2,744 Journeys)
+  4. Headline CAC (Unique Students): `$174.05` | Cost Per Order: `$155.40`
+  5. Multi-Touch Share: `69.1%` (1,693 / 2,450 Journeys)
 - **Row 2 (Visuals):**
   - **Left (Clustered Bar Chart):** Channel Spend vs Attributed Revenue (Sort by Spend DESC).
   - **Right (Scatter Plot):** CAC vs ROAS by Channel (X-axis: CAC, Y-axis: ROAS, Bubble Size: Total Conversions).
@@ -211,7 +215,7 @@ DIVIDE([Historical CLV], [Blended Paid CAC], BLANK())
   - **Left (Column Chart):** Path Length Distribution (1 Touch: 30.9%, 2-3 Touches: 48.4%, 4+ Touches: 20.7%).
   - **Right (Donut Chart):** Time-to-Convert Latency Buckets (<3 Days: 43.1%, 4-14 Days: 37.5%, 15-30 Days: 19.4%).
 - **Row 3 (Visuals):**
-  - **Left (Top 8 Horizontal Bar Chart):** Most Frequent Converting Paths (`Paid Social`: 286, `Paid Search`: 219, `Display Ads`: 142, etc.).
+  - **Left (Top 8 Horizontal Bar Chart):** Most Frequent Converting Paths (`Paid Social > Paid Search`: 43, `Paid Search > Direct`: 41, `Paid Social > Organic Search`: 35, etc.).
   - **Right (Stacked Bar Chart):** Channel Funnel Roles (First Touch vs Assist Touch vs Last Touch) with Assist-to-Last Ratio.
 
 ### Page 3: Multi-Touch Attribution Model Comparison
@@ -279,5 +283,5 @@ Follow these exact steps to assemble the `.pbix` file from scratch:
    - Page 5: Budget Shift Waterfall, Marginal ROAS Table, Scenario Uplift Cards.
 5. **Phase 5: Quality Assurance & Cross-Check (15 minutes)**
    - Follow `dashboard/POWERBI_BUILD_CHECKLIST.md`.
-   - Verify Total Paid Spend = **$426,418.04**, Total Revenue = **$2,374,133.70**, Blended ROAS = **3.96x**.
+   - Verify Total Paid Spend = **$426,418.04**, Total Revenue = **$2,382,514.60**, Blended ROAS = **3.96x**.
    - Save file as `dashboard/Grito_Marketing_Attribution.pbix`.
