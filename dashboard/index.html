@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grito Labs | Multi-Channel Marketing Analytics & Attribution Engine</title>
+  <!-- Chart.js for High Performance Visualizations (Bundled Locally) -->
+  <script src="chart.min.js"></script>
+  <style>
+    :root {
+      --primary: #0B2545;
+      --secondary: #134074;
+      --accent: #007BFF;
+      --success: #2A9D8F;
+      --warning: #E76F51;
+      --danger: #E63946;
+      --bg: #F4F6F9;
+      --card-bg: #FFFFFF;
+      --text-main: #212529;
+      --text-muted: #6C757D;
+      --border: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 24px;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 24px 32px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(11, 37, 69, 0.15);
+    }
+
+    .brand-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-subtitle {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .header-badge {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      text-align: right;
+    }
+
+    /* Controls Bar */
+    .controls-panel {
+      background: var(--card-bg);
+      padding: 18px 24px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .control-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select, button {
+      padding: 9px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      background: white;
+      color: var(--text-main);
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    select:focus, button:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .kpi-card.green::before { background: var(--success); }
+    .kpi-card.orange::before { background: var(--warning); }
+    .kpi-card.navy::before { background: var(--secondary); }
+
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .kpi-subtext {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Visuals Grid */
+    .visuals-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 22px;
+    }
+
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chart-container {
+      position: relative;
+      height: 320px;
+      width: 100%;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      background: #F8FAFC;
+      color: var(--secondary);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-main);
+    }
+
+    tr:hover td {
+      background: #F8FAFC;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-star { background: #D8F3DC; color: #1B4332; }
+    .badge-scalable { background: #E0E7FF; color: #3730A3; }
+    .badge-qm { background: #FEF3C7; color: #92400E; }
+    .badge-cut { background: #FEE2E2; color: #991B1B; }
+
+    /* Simulator Sliders */
+    .slider-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .slider-label {
+      font-size: 13px;
+      font-weight: 600;
+      width: 140px;
+    }
+
+    .slider-input {
+      flex-grow: 1;
+      margin: 0 16px;
+    }
+
+    .slider-val {
+      font-size: 13px;
+      font-weight: 700;
+      width: 95px;
+      text-align: right;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 992px) {
+      .col-7, .col-5, .col-6 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Banner -->
+  <div class="header-container">
+    <div>
+      <div class="brand-title">Grito Labs | Multi-Channel Marketing Analytics</div>
+      <div class="brand-subtitle">Attribution Modeling, Customer Journey Telemetry & Portfolio Budget Optimization</div>
+    </div>
+    <div class="header-badge">
+      <div>90-Day Cohort: Aug 1 - Oct 31, 2026</div>
+      <div style="font-size:11px; color:#A7D7C5; margin-top:3px;">[Synthetic Dataset: Seed 42 | 16K Students]</div>
+    </div>
+  </div>
+
+  <!-- Dynamic Controls Bar -->
+  <div class="controls-panel">
+    <div class="control-group">
+      <span class="control-label">Attribution Model:</span>
+      <select id="modelSelector" onchange="updateModelDashboard()">
+        <option value="position_based">Position-Based / U-Shaped (40-20-40) [Recommended]</option>
+        <option value="markov">Data-Driven Markov Chain (Removal Effects)</option>
+        <option value="shapley">Data-Driven Shapley Value (Game Theory)</option>
+        <option value="time_decay">Time-Decay (7-Day Exponential Half-Life)</option>
+        <option value="linear">Linear Attribution (Equal 1/N Credit)</option>
+        <option value="first_touch">First-Touch Attribution (100% Originator)</option>
+        <option value="last_touch">Last-Touch Attribution (100% Closer)</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">Lookback Window:</span>
+      <select id="lookbackSelector">
+        <option value="30">30 Days (Standard EdTech Consideration)</option>
+        <option value="14">14 Days (Accelerated Bootcamps)</option>
+        <option value="7">7 Days (High Urgency Deadlines)</option>
+      </select>
+      <button onclick="window.print()">Print / Export PDF</button>
+    </div>
+  </div>
+
+  <!-- Top Executive KPI Metric Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card navy">
+      <div class="kpi-label">Total Paid Spend</div>
+      <div class="kpi-value" id="kpiSpend">$426,418</div>
+      <div class="kpi-subtext">17.96% of Total Revenue</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Attributed Revenue</div>
+      <div class="kpi-value" id="kpiRevenue">$2,374,134</div>
+      <div class="kpi-subtext" id="kpiModelLabel">Position-Based Model</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Blended Paid ROAS</div>
+      <div class="kpi-value" id="kpiROAS">3.96x</div>
+      <div class="kpi-subtext">Projected Optimized: 4.49x</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">Paid Blended CAC</div>
+      <div class="kpi-value" id="kpiCAC">$155.40</div>
+      <div class="kpi-subtext">2,744 Enrolled Students</div>
+    </div>
+    <div class="kpi-card navy">
+      <div class="kpi-label">Multi-Touch Share</div>
+      <div class="kpi-value">69.1%</div>
+      <div class="kpi-subtext">1,897 of 2,744 Journeys (&ge;2 Touches)</div>
+    </div>
+  </div>
+
+  <!-- Row 1: Charts (Channel Attribution Comparison & Assist Role) -->
+  <div class="visuals-grid">
+    <div class="card col-7">
+      <div class="card-title">
+        <span>Channel Attributed Revenue vs Media Spend</span>
+        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">Dynamic Attribution Slicer</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="channelChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card col-5">
+      <div class="card-title">
+        <span>Channel Funnel Role Distribution</span>
+        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">First vs Assist vs Last Touch</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="roleChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2: Model Comparison Matrix Table & Top Paths -->
+  <div class="visuals-grid">
+    <div class="card col-7">
+      <div class="card-title">
+        <span>Attribution Comparison Matrix by Channel</span>
+        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">Values in USD ($)</span>
+      </div>
+      <div style="overflow-x: auto;">
+        <table id="matrixTable">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Spend</th>
+              <th>Last-Touch</th>
+              <th>U-Shaped</th>
+              <th>Markov Chain</th>
+              <th>Model ROAS</th>
+              <th>Shift vs LTA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic rows populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card col-5">
+      <div class="card-title">
+        <span>Top 8 Converting Customer Paths</span>
+        <span style="font-size:12px; font-weight:normal; color:var(--text-muted);">Journey Sequences</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Path Sequence</th>
+            <th>Orders</th>
+            <th>Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Paid Social</td><td>286</td><td>10.4%</td></tr>
+          <tr><td>Paid Search</td><td>219</td><td>8.0%</td></tr>
+          <tr><td>Display Ads</td><td>142</td><td>5.2%</td></tr>
+          <tr><td>Organic Search</td><td>140</td><td>5.1%</td></tr>
+          <tr><td>Referral</td><td>63</td><td>2.3%</td></tr>
+          <tr><td>Direct</td><td>57</td><td>2.1%</td></tr>
+          <tr><td>Paid Search &gt; Direct</td><td>50</td><td>1.8%</td></tr>
+          <tr><td>Paid Social &gt; Paid Search</td><td>48</td><td>1.7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Row 3: Campaign Quadrant Matrix & Budget Reallocation Simulator -->
+  <div class="visuals-grid">
+    <div class="card col-6">
+      <div class="card-title">
+        <span>Campaign Quadrants: Efficiency (ROAS) vs Scale (Revenue)</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="quadrantChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card col-6">
+      <div class="card-title">
+        <span>Interactive Budget Optimization Simulator (Hill Saturation)</span>
+      </div>
+      <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">
+        Adjust proposed channel budget shifts below to simulate real-time portfolio incremental revenue under diminishing marginal returns:
+      </p>
+
+      <div class="slider-container">
+        <span class="slider-label">Paid Search ($):</span>
+        <input type="range" min="100000" max="250000" value="140010" class="slider-input" id="slideSearch" oninput="runBudgetSim()">
+        <span class="slider-val" id="valSearch">$140,010</span>
+      </div>
+      <div class="slider-container">
+        <span class="slider-label">Paid Social ($):</span>
+        <input type="range" min="100000" max="220000" value="147551" class="slider-input" id="slideSocial" oninput="runBudgetSim()">
+        <span class="slider-val" id="valSocial">$147,551</span>
+      </div>
+      <div class="slider-container">
+        <span class="slider-label">Email Mktg ($):</span>
+        <input type="range" min="8000" max="40000" value="34950" class="slider-input" id="slideEmail" oninput="runBudgetSim()">
+        <span class="slider-val" id="valEmail">$34,950</span>
+      </div>
+      <div class="slider-container">
+        <span class="slider-label">Display Ads ($):</span>
+        <input type="range" min="25000" max="80000" value="63926" class="slider-input" id="slideDisplay" oninput="runBudgetSim()">
+        <span class="slider-val" id="valDisplay">$63,926</span>
+      </div>
+      <div class="slider-container">
+        <span class="slider-label">Referral ($):</span>
+        <input type="range" min="12000" max="45000" value="39980" class="slider-input" id="slideReferral" oninput="runBudgetSim()">
+        <span class="slider-val" id="valReferral">$39,980</span>
+      </div>
+
+      <div style="background:#F8FAFC; padding:16px; border-radius:8px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:12px; color:var(--text-muted); font-weight:600;">SIMULATED INCREMENTAL REVENUE:</div>
+          <div style="font-size:24px; font-weight:700; color:var(--success);" id="simIncRev">+$224,908</div>
+        </div>
+        <div>
+          <div style="font-size:12px; color:var(--text-muted); font-weight:600;">SIMULATED TOTAL SPEND:</div>
+          <div style="font-size:18px; font-weight:700; color:var(--primary);" id="simTotalSpend">$426,417</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Grito Labs Marketing Analytics Framework &bull; Synthetic dataset generated to mimic realistic EdTech multi-channel behavior (Seed 42) &bull; 16,000 Students &bull; 40,806 Touchpoints &bull; 2,744 Enrollments
+  </div>
+
+  <script>
+    // Data structures populated directly from Python analytics engine (Seed 42)
+    const CHANNEL_DATA = {
+      "Paid Search": { spend: 198410.22, lta: 506125.30, fta: 577728.50, linear: 530926.48, time_decay: 527671.51, position_based: 536017.28, markov: 499496.86, shapley: 371709.08, first: 3859, assist: 2608, last: 1969 },
+      "Paid Social": { spend: 142951.06, lta: 387351.40, fta: 792930.80, linear: 544133.51, time_decay: 522161.76, position_based: 571912.22, markov: 483973.77, shapley: 330100.14, first: 5462, assist: 1572, last: 1115 },
+      "Display Ads": { spend: 51626.47,  lta: 198153.30, fta: 364869.40, linear: 259603.06, time_decay: 250866.71, position_based: 272976.29, markov: 256107.78, shapley: 376027.58, first: 2564, assist: 700,  last: 481 },
+      "Email Marketing": { spend: 13700.33, lta: 333974.30, fta: 0.0,      linear: 220760.22, time_decay: 237496.56, position_based: 191562.81, markov: 315430.01, shapley: 2882.46,   first: 0,    assist: 3028, last: 2444 },
+      "Referral": { spend: 19729.96,    lta: 100378.90, fta: 137753.70, linear: 114991.21, time_decay: 113800.39, position_based: 117069.24, markov: 122710.09, shapley: 457255.41, first: 960,  assist: 422,  last: 332 },
+      "Organic Search": { spend: 0.0,   lta: 302134.50, fta: 351110.40, linear: 321479.21, time_decay: 319037.54, position_based: 324750.26, markov: 319225.76, shapley: 425509.66, first: 2223, assist: 1536, last: 1170 },
+      "Direct": { spend: 0.0,           lta: 554396.90, fta: 158121.80, linear: 390620.91, time_decay: 411480.14, position_based: 368226.50, markov: 385570.34, shapley: 419030.27, first: 932,  assist: 3978, last: 3451 }
+    };
+
+    let channelChart, roleChart, quadrantChart;
+
+    function initCharts() {
+      // 1. Channel Chart
+      const ctx1 = document.getElementById('channelChart').getContext('2d');
+      channelChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(CHANNEL_DATA),
+          datasets: [
+            {
+              label: 'Attributed Revenue ($)',
+              data: Object.values(CHANNEL_DATA).map(d => d.position_based),
+              backgroundColor: '#007BFF',
+              borderRadius: 4
+            },
+            {
+              label: 'Media Spend ($)',
+              data: Object.values(CHANNEL_DATA).map(d => d.spend),
+              backgroundColor: '#E63946',
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { beginAtZero: true, grid: { color: '#EDF2F7' } } }
+        }
+      });
+
+      // 2. Funnel Role Chart (Stacked)
+      const ctx2 = document.getElementById('roleChart').getContext('2d');
+      roleChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(CHANNEL_DATA),
+          datasets: [
+            { label: 'First Touch', data: Object.values(CHANNEL_DATA).map(d => d.first), backgroundColor: '#2A9D8F' },
+            { label: 'Assist Touch', data: Object.values(CHANNEL_DATA).map(d => d.assist), backgroundColor: '#E76F51' },
+            { label: 'Last Touch', data: Object.values(CHANNEL_DATA).map(d => d.last), backgroundColor: '#134074' }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { x: { stacked: true }, y: { stacked: true, grid: { color: '#EDF2F7' } } }
+        }
+      });
+
+      // 3. Campaign Quadrant Scatter Chart
+      const ctx3 = document.getElementById('quadrantChart').getContext('2d');
+      quadrantChart = new Chart(ctx3, {
+        type: 'scatter',
+        data: {
+          datasets: [
+            {
+              label: 'Stars (High ROAS & Scale)',
+              data: [
+                { x: 182546, y: 7.06, name: 'PS_Brand_Core' },
+                { x: 188537, y: 7.50, name: 'SOC_Meta_Prospecting' },
+                { x: 176516, y: 6.23, name: 'SOC_Meta_Retargeting' },
+                { x: 137131, y: 7.32, name: 'DIS_Retargeting_Dynamic' },
+                { x: 135845, y: 4.13, name: 'DIS_Affinity_Awareness' },
+                { x: 117069, y: 5.93, name: 'REF_Student_Advocate' }
+              ],
+              backgroundColor: '#2A9D8F',
+              pointRadius: 9
+            },
+            {
+              label: 'Scalable Gems (High ROAS / Low Spend)',
+              data: [
+                { x: 60465, y: 16.04, name: 'EM_Alumni_Upsell' },
+                { x: 65034, y: 13.84, name: 'EM_Webinar_Nurture' },
+                { x: 66064, y: 12.63, name: 'EM_Abandoned_Application' }
+              ],
+              backgroundColor: '#007BFF',
+              pointRadius: 8
+            },
+            {
+              label: 'Question Marks / Saturated',
+              data: [
+                { x: 206859, y: 2.31, name: 'SOC_LinkedIn_Prof' },
+                { x: 173323, y: 2.43, name: 'PS_NonBrand_Analytics' },
+                { x: 180148, y: 1.78, name: 'PS_Competitor_Intercept' }
+              ],
+              backgroundColor: '#E76F51',
+              pointRadius: 8
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top' },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  return `${ctx.raw.name}: Rev $${ctx.raw.x.toLocaleString()} | ROAS ${ctx.raw.y}x`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: { title: { display: true, text: 'Attributed Revenue ($)' }, grid: { color: '#EDF2F7' } },
+            y: { title: { display: true, text: 'ROAS (Return on Ad Spend)' }, grid: { color: '#EDF2F7' } }
+          }
+        }
+      });
+
+      renderMatrixTable('position_based');
+    }
+
+    function renderMatrixTable(modelKey) {
+      const tbody = document.querySelector('#matrixTable tbody');
+      tbody.innerHTML = '';
+      for (const [ch, d] of Object.entries(CHANNEL_DATA)) {
+        const rev = d[modelKey];
+        const roas = d.spend > 0 ? (rev / d.spend).toFixed(2) + 'x' : 'N/A';
+        const shift = d.lta > 0 ? (((rev - d.lta) / d.lta) * 100).toFixed(1) : '0.0';
+        const shiftColor = shift >= 0 ? '#2A9D8F' : '#E63946';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${ch}</strong></td>
+          <td>$${d.spend.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>$${d.lta.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>$${d.position_based.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>$${d.markov.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td><strong>${roas}</strong></td>
+          <td style="color:${shiftColor}; font-weight:700;">${shift >= 0 ? '+' : ''}${shift}%</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function updateModelDashboard() {
+      const model = document.getElementById('modelSelector').value;
+      const modelLabels = {
+        position_based: 'Position-Based (U-Shaped)',
+        markov: 'Markov Chain (Removal Effects)',
+        shapley: 'Shapley Value (Game Theory)',
+        time_decay: 'Time-Decay (7d Half-Life)',
+        linear: 'Linear (Equal Credit)',
+        first_touch: 'First-Touch Attribution',
+        last_touch: 'Last-Touch Attribution'
+      };
+
+      document.getElementById('kpiModelLabel').innerText = modelLabels[model];
+
+      // Update Channel Chart Data
+      const revData = Object.values(CHANNEL_DATA).map(d => d[model]);
+      channelChart.data.datasets[0].data = revData;
+      channelChart.update();
+
+      renderMatrixTable(model);
+    }
+
+    function runBudgetSim() {
+      const sSearch = parseFloat(document.getElementById('slideSearch').value);
+      const sSocial = parseFloat(document.getElementById('slideSocial').value);
+      const sEmail = parseFloat(document.getElementById('slideEmail').value);
+      const sDisplay = parseFloat(document.getElementById('slideDisplay').value);
+      const sRef = parseFloat(document.getElementById('slideReferral').value);
+
+      document.getElementById('valSearch').innerText = '$' + Math.round(sSearch).toLocaleString();
+      document.getElementById('valSocial').innerText = '$' + Math.round(sSocial).toLocaleString();
+      document.getElementById('valEmail').innerText = '$' + Math.round(sEmail).toLocaleString();
+      document.getElementById('valDisplay').innerText = '$' + Math.round(sDisplay).toLocaleString();
+      document.getElementById('valReferral').innerText = '$' + Math.round(sRef).toLocaleString();
+
+      const totalSpend = sSearch + sSocial + sEmail + sDisplay + sRef;
+      document.getElementById('simTotalSpend').innerText = '$' + Math.round(totalSpend).toLocaleString();
+
+      // Hill Saturation simulation calculation (calibrated to backend parameters)
+      const rSearch = 950000 * Math.pow(sSearch, 1.15) / (Math.pow(280000, 1.15) + Math.pow(sSearch, 1.15));
+      const rSocial = 980000 * Math.pow(sSocial, 1.12) / (Math.pow(190000, 1.12) + Math.pow(sSocial, 1.12));
+      const rEmail  = 550000 * Math.pow(sEmail, 1.25) / (Math.pow(35000, 1.25) + Math.pow(sEmail, 1.25));
+      const rDisp   = 450000 * Math.pow(sDisplay, 1.05) / (Math.pow(80000, 1.05) + Math.pow(sDisplay, 1.05));
+      const rRef    = 350000 * Math.pow(sRef, 1.20) / (Math.pow(45000, 1.20) + Math.pow(sRef, 1.20));
+
+      const totalSimRev = rSearch + rSocial + rEmail + rDisp + rRef;
+      const basePaidRev = 1689538.44;
+      const incRev = totalSimRev - basePaidRev;
+
+      const incFormatted = (incRev >= 0 ? '+' : '-') + '$' + Math.abs(Math.round(incRev)).toLocaleString();
+      document.getElementById('simIncRev').innerText = incFormatted;
+    }
+
+    window.onload = function() {
+      initCharts();
+      runBudgetSim();
+    };
+  </script>
+</body>
+</html>

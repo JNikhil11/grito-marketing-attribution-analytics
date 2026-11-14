@@ -1,0 +1,7 @@
+channel_name,acquired_customers,repeat_customers,repeat_rate_pct,total_spend,blended_cac,avg_historical_clv,avg_predictive_12m_clv,historical_ltv_cac,predictive_ltv_cac
+Paid Social,801,103,12.9,142951.06,178.47,1106.9,2699.34,6.2,15.13
+Paid Search,589,65,11.0,198410.22,336.86,1094.42,2713.93,3.25,8.06
+Display Ads,394,46,11.7,51626.47,131.03,1027.72,2601.25,7.84,19.85
+Organic Search,356,45,12.6,0,0.0,1112.12,2789.79,N/A (Organic),N/A (Organic)
+Direct,161,21,13.0,0,0.0,1107.15,2658.14,N/A (Organic),N/A (Organic)
+Referral,149,14,9.4,19729.96,132.42,1036.84,2645.1,7.83,19.98

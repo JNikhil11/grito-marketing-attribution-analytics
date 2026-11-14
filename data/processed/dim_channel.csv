@@ -1,0 +1,8 @@
+channel_id,channel_name,channel_group,cpc_base,is_paid
+1,Paid Search,Paid Search,3.85,1
+2,Paid Social,Social,1.65,1
+3,Email Marketing,Owned,0.35,1
+4,Display Ads,Display,0.85,1
+5,Organic Search,Organic,0.0,0
+6,Referral,Referral,1.25,1
+7,Direct,Direct,0.0,0

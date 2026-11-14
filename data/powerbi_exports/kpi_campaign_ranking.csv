@@ -1,0 +1,15 @@
+campaign_id,campaign_name,channel_name,objective,target_audience,total_spend,attributed_conversions,attributed_revenue,cac,roas,strategic_quadrant,tactical_action,efficiency_rank,scale_rank
+CMP-DIR-01,DIR_Direct_Traffic,Direct,Direct Visit,Organic Bookmarks,0.0,374.28,368226.5,0.0,,4. Cut Candidates (Reduce / Terminate),Pause or slash budget by 50% to fund high-ROAS channels,13,1
+CMP-SEO-01,SEO_Analytics_Cheatsheets,Organic Search,Inbound Organic,Self-Directed Learners,0.0,329.5,324750.27,0.0,,4. Cut Candidates (Reduce / Terminate),Pause or slash budget by 50% to fund high-ROAS channels,13,2
+CMP-SOC-02,SOC_LinkedIn_Prof,Paid Social,High-Ticket Leads,Working Analysts 25-40,89465.52,210.07,206858.76,425.88,2.31,3. Question Marks (Optimize Creatives),Refine negative keywords / refresh creative assets,11,3
+CMP-SOC-01,SOC_Meta_Prospecting,Paid Social,Awareness & Leads,STEM Graduates 22-30,25131.73,190.97,188537.1,131.6,7.5,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,4,4
+CMP-PS-01,PS_Brand_Core,Paid Search,Capture Intent,Brand Searchers,25844.85,182.45,182546.33,141.65,7.06,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,6,5
+CMP-PS-03,PS_Competitor_Intercept,Paid Search,Acquisition,Edtech Evaluators,101227.57,183.98,180148.37,550.21,1.78,3. Question Marks (Optimize Creatives),Refine negative keywords / refresh creative assets,12,6
+CMP-SOC-03,SOC_Meta_Retargeting,Paid Social,Mid-Funnel Nudge,Website Visitors 30d,28353.81,185.53,176516.37,152.83,6.23,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,7,7
+CMP-PS-02,PS_NonBrand_Analytics,Paid Search,Acquisition,Career Switchers,71337.8,172.22,173322.58,414.22,2.43,3. Question Marks (Optimize Creatives),Refine negative keywords / refresh creative assets,10,8
+CMP-DIS-01,DIS_Retargeting_Dynamic,Display Ads,Consideration,Engaged Site Visitors,18728.58,143.98,137131.15,130.08,7.32,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,5,9
+CMP-DIS-02,DIS_Affinity_Awareness,Display Ads,Top Funnel Reach,Tech & Business Readers,32897.89,146.6,135845.14,224.41,4.13,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,9,10
+CMP-REF-01,REF_Student_Advocate,Referral,Advocacy,Referred Peers,19729.96,123.88,117069.24,159.27,5.93,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,8,11
+CMP-EM-02,EM_Abandoned_Application,Email Marketing,Cart Recovery,Form Abandoners,5232.29,68.87,66063.98,75.97,12.63,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,3,12
+CMP-EM-01,EM_Webinar_Nurture,Email Marketing,Lead Conversion,Masterclass Attendees,4699.15,69.97,65033.54,67.16,13.84,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,2,13
+CMP-EM-03,EM_Alumni_Upsell,Email Marketing,LTV Expansion,Past Graduates,3768.89,67.7,60465.29,55.67,16.04,1. Stars (Scale & Protect),Increase budget by +20% with close bid monitoring,1,14

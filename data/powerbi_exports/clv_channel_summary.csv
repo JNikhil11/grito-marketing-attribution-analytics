@@ -1,0 +1,7 @@
+acquisition_channel,acquired_customers,repeat_customers,repeat_rate_pct,total_lifetime_revenue,avg_historical_clv,blended_cac,ltv_cac_ratio
+Paid Social,801,103,12.9,886627.8,1106.9,178.47,6.2
+Paid Search,589,65,11.0,644613.5,1094.42,336.86,3.25
+Display Ads,394,46,11.7,404923.4,1027.72,131.03,7.84
+Organic Search,356,45,12.6,395915.4,1112.12,0.0,
+Direct,161,21,13.0,178250.8,1107.15,0.0,
+Referral,149,14,9.4,154489.7,1036.84,132.42,7.83

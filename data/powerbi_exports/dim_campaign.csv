@@ -1,0 +1,15 @@
+campaign_id,campaign_name,channel_id,objective,target_audience,daily_budget
+CMP-PS-01,PS_Brand_Core,1,Capture Intent,Brand Searchers,1200
+CMP-PS-02,PS_NonBrand_Analytics,1,Acquisition,Career Switchers,1600
+CMP-PS-03,PS_Competitor_Intercept,1,Acquisition,Edtech Evaluators,550
+CMP-SOC-01,SOC_Meta_Prospecting,2,Awareness & Leads,STEM Graduates 22-30,1100
+CMP-SOC-02,SOC_LinkedIn_Prof,2,High-Ticket Leads,Working Analysts 25-40,850
+CMP-SOC-03,SOC_Meta_Retargeting,2,Mid-Funnel Nudge,Website Visitors 30d,550
+CMP-EM-01,EM_Webinar_Nurture,3,Lead Conversion,Masterclass Attendees,110
+CMP-EM-02,EM_Abandoned_Application,3,Cart Recovery,Form Abandoners,80
+CMP-EM-03,EM_Alumni_Upsell,3,LTV Expansion,Past Graduates,60
+CMP-DIS-01,DIS_Retargeting_Dynamic,4,Consideration,Engaged Site Visitors,450
+CMP-DIS-02,DIS_Affinity_Awareness,4,Top Funnel Reach,Tech & Business Readers,400
+CMP-SEO-01,SEO_Analytics_Cheatsheets,5,Inbound Organic,Self-Directed Learners,0
+CMP-REF-01,REF_Student_Advocate,6,Advocacy,Referred Peers,280
+CMP-DIR-01,DIR_Direct_Traffic,7,Direct Visit,Organic Bookmarks,0

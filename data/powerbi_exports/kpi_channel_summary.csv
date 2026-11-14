@@ -1,0 +1,8 @@
+channel_id,channel_name,channel_group,is_paid,total_impressions,total_clicks,total_spend,last_touch_conversions,last_touch_revenue,ctr_pct,cpc,cvr_pct,cpa_cac,last_touch_roas,roi_pct
+1,Paid Search,Paid Search,1,490134,20799,198410.22,505,506125.3,4.24,9.54,2.43,392.89,2.55,155.09
+2,Paid Social,Social,1,2358375,25953,142951.06,408,387351.4,1.1,5.51,1.57,350.37,2.71,170.97
+4,Display Ads,Display,1,9225473,26743,51626.47,206,198153.3,0.29,1.93,0.77,250.61,3.84,283.82
+6,Referral,Referral,1,10654,7120,19729.96,103,100378.9,66.83,2.77,1.45,191.55,5.09,408.76
+3,Email Marketing,Owned,1,628473,17668,13700.33,358,333974.3,2.81,0.78,2.03,38.27,24.38,2337.71
+5,Organic Search,Organic,0,7370,4929,0.0,307,302134.5,66.88,0.0,6.23,0.0,,
+7,Direct,Direct,0,12516,8361,0.0,563,554396.9,66.8,0.0,6.73,0.0,,

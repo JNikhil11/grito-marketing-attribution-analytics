@@ -1,0 +1,29 @@
+# Grito Labs Marketing Analytics & Attribution Framework
+# Core Requirements
+
+# Database & SQL Execution
+# Note: SQLite 3.35+ is included in Python standard library (zero-setup).
+# DuckDB can be installed as an alternative fast analytical engine:
+duckdb>=0.9.0; python_version < "3.14"
+
+# Presentation and PDF Generation
+python-pptx>=1.0.0
+Pillow>=10.0.0
+pymupdf>=1.24.0
+
+# Data Science & Attribution Modeling
+# (Pure-python robust fallback engine included in src/ for zero-dependency execution)
+numpy>=1.24.0; python_version < "3.14"
+pandas>=2.0.0; python_version < "3.14"
+scipy>=1.10.0; python_version < "3.14"
+scikit-learn>=1.3.0; python_version < "3.14"
+
+# Visualization & Interactive Dashboards
+matplotlib>=3.7.0; python_version < "3.14"
+seaborn>=0.12.0; python_version < "3.14"
+plotly>=5.15.0; python_version < "3.14"
+jinja2>=3.1.0
+
+# Optional Notebook Tooling
+nbformat>=5.9.0
+ipykernel>=6.25.0; python_version < "3.14"

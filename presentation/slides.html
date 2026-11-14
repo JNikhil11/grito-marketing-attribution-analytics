@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    @page {
+      size: 13.333in 7.5in;
+      margin: 0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #F8F9FA;
+      color: #212529;
+    }
+    .slide {
+      width: 13.333in;
+      height: 7.5in;
+      page-break-after: always;
+      position: relative;
+      box-sizing: border-box;
+      padding: 0.5in 0.8in;
+      background: #F8F9FA;
+    }
+    .slide.title-slide {
+      background: #0B2545;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 1.5in;
+    }
+    .title-h1 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: white;
+      margin-bottom: 18px;
+    }
+    .title-sub {
+      font-size: 21px;
+      color: #2A9D8F;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .title-meta {
+      font-size: 14px;
+      color: #B0C4DE;
+      line-height: 1.5;
+    }
+    .cat-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #007BFF;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .action-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: #0B2545;
+      margin-bottom: 22px;
+      line-height: 1.25;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 7.6in 3.6in;
+      gap: 0.5in;
+    }
+    .left-card {
+      background: white;
+      border: 1px solid #DCE2EB;
+      border-radius: 10px;
+      padding: 24px 30px;
+      height: 4.8in;
+      box-sizing: border-box;
+    }
+    .bullet-item {
+      font-size: 14.5px;
+      line-height: 1.55;
+      margin-bottom: 14px;
+      position: relative;
+      padding-left: 20px;
+    }
+    .bullet-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #007BFF;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .kpi-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .kpi-card {
+      background: white;
+      border: 1px solid #DCE2EB;
+      border-left: 5px solid #007BFF;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6C757D;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: #0B2545;
+      margin-bottom: 4px;
+    }
+    .kpi-subtext {
+      font-size: 12px;
+      color: #2A9D8F;
+      font-weight: 600;
+    }
+    .slide-num {
+      position: absolute;
+      bottom: 0.3in;
+      right: 0.8in;
+      font-size: 12px;
+      color: #6C757D;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide title-slide">
+    <div class="title-h1">Multi-Channel Marketing Analytics &<br>Attribution Optimization Framework</div>
+    <div class="title-sub">Data-Driven Journey Modeling, Algorithmic Attribution & Capital Reallocation</div>
+    <div class="title-meta">Prepared for Grito Labs Executive Analytics Committee | Q4 2026<br>[Synthetic Dataset: Seed 42, 16K Students, 40.8K Touches, 2,744 Orders]</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">STRATEGIC OVERVIEW</div>
+    <div class="action-title">Executive Summary: Zero-Sum Budget Shift Unlocks +$224.9K Revenue at Fixed $426.4K Spend</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Baseline Performance: $426.4K marketing spend generated $2.37M across 2,744 enrollments (Blended Paid ROAS: 3.96x, Spend: 17.96% of revenue).</div><div class="bullet-item">The Attribution Blindspot: Last-Touch systematically undervalues Paid Social by +47.6% (+$184.6K) and Display Ads by +37.8% (+$74.8K), while over-crediting Direct navigation by -33.6%.</div><div class="bullet-item">Multi-Touch Dominance: 69.1% of conversions involve multi-channel paths with 5.2-day average latency; single-touch evaluation misleads capital allocation.</div><div class="bullet-item">Quantified Optimization: Reallocating -$58.4K from diminishing Paid Search into Email (+$21.3K), Referral (+$20.3K), Display (+$12.3K), and Social (+$4.6K) expands Paid ROAS from 3.96x to 4.49x.</div><div class="bullet-item">Execution & De-Risking: Pre-validated via 4-week Matched-Market Geo-Holdout test with automated weekly Power BI refreshes.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Current Paid Spend</div>
+        <div class="kpi-value">$426.4K</div>
+        <div class="kpi-subtext">Strict Zero Net Shift</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Base Incremental Rev</div>
+        <div class="kpi-value">+$224.9K</div>
+        <div class="kpi-subtext">+13.3% Paid Lift</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Optimized Paid ROAS</div>
+        <div class="kpi-value">4.49x</div>
+        <div class="kpi-subtext">vs 3.96x Baseline</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">2 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">BUSINESS CONTEXT</div>
+    <div class="action-title">The Business Problem: EdTech Decision Gestation Renders Last-Click Attribution Value-Destructive</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">High-Involvement EdTech Decisions: Career-track courses ($349 to $2,199) require multi-week research, curriculum evaluation, and peer review.</div><div class="bullet-item">Myopic Capital Allocation: Crediting only the closing click causes marketing teams to over-fund brand search and starve top-of-funnel discovery.</div><div class="bullet-item">Attribution Deficit: Without multi-touch modeling, marketing cannot identify which mid-funnel touchpoints prevent student abandonment.</div><div class="bullet-item">Data Authenticity & Transparency: Synthetic dataset calibrated to realistic EdTech metrics (seed 42, 16K students, 40.8K touches, 2,744 orders) following public data license constraints.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Average Order Value</div>
+        <div class="kpi-value">$865</div>
+        <div class="kpi-subtext">Across Course Tiers</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Journey Touches</div>
+        <div class="kpi-value">2.8 Touches</div>
+        <div class="kpi-subtext">Max: 8 Interactions</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Average Gestation</div>
+        <div class="kpi-value">5.2 Days</div>
+        <div class="kpi-subtext">First Touch to Order</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">3 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">DATA ENGINEERING</div>
+    <div class="action-title">Data Architecture: 40.8K Telemetry Records Reconciled with Zero Leakage in Star Schema</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Dimensional Warehouse: Built in portable ANSI SQL on DuckDB/SQLite; 100% compliant with PostgreSQL/Snowflake.</div><div class="bullet-item">Rigorous Audit Pass: Zero duplicate primary keys, zero orphan foreign keys, zero negative spend rows, and verified 30-day lookback windows.</div><div class="bullet-item">Sessionized 30-Day Lookback: Window functions (ROW_NUMBER, LAG, SUM OVER) isolate pre-conversion customer interactions.</div><div class="bullet-item">Ground-Truth Revenue Sum: Attributed revenue across all 5 SQL models reconciles to the exact penny ($2,374,133.70).</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Touchpoints Audited</div>
+        <div class="kpi-value">40,806</div>
+        <div class="kpi-subtext">100% Validated</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Customers Tracked</div>
+        <div class="kpi-value">16,000</div>
+        <div class="kpi-subtext">Full Trajectory</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Revenue Reconciled</div>
+        <div class="kpi-value">$2.37M</div>
+        <div class="kpi-subtext">Zero Discrepancy ($0.00)</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">4 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">CHANNEL PERFORMANCE</div>
+    <div class="action-title">Macro Channel Performance: Paid Search & Social Absorb 80% of Spend with Divergent Unit Economics</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Paid Search ($198.4K Spend): Captures high-intent evaluation traffic ($506.1K Last-Touch Rev), but has the highest CAC ($336.86) and lowest ROAS (2.55x).</div><div class="bullet-item">Paid Social ($143.0K Spend): Delivers high discovery volume (2.36M impressions) at a balanced $178.47 CAC and 4.00x Position-Based ROAS.</div><div class="bullet-item">Email Marketing ($13.7K Spend): Operates at an efficient 13.98x Position-Based ROAS with an ultra-low CAC of $38.27.</div><div class="bullet-item">Referral ($19.7K Spend): Generates $117.1K Position-Based revenue at 5.93x ROAS, representing high student advocacy trust.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Paid Search CAC</div>
+        <div class="kpi-value">$336.86</div>
+        <div class="kpi-subtext">Highest Acquisition Cost</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Paid Social CAC</div>
+        <div class="kpi-value">$178.47</div>
+        <div class="kpi-subtext">47% Cheaper than Search</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Email Mktg ROAS</div>
+        <div class="kpi-value">13.98x</div>
+        <div class="kpi-subtext">Severely Underfunded</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">5 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">UNIT ECONOMICS</div>
+    <div class="action-title">Unit Economics Disparity: Paid Social Acquires Qualified Students at 47% Lower CAC than Search</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">CPC Dynamics: Paid Search CPC ($9.54) is 1.7x Paid Social ($5.51), 3.4x Referral ($2.77), and 4.9x Display ($1.93).</div><div class="bullet-item">CTR Benchmarks: Display CTR is 0.29%, Paid Social CTR is 1.10%, Email CTR is 2.81%, Paid Search CTR is 4.24%—aligning with EdTech norms.</div><div class="bullet-item">The CAC Divergence: Elevated Search CPC drives its cost per customer acquisition ($336.86) to 1.9x that of Social ($178.47).</div><div class="bullet-item">Diminishing Returns: Paid Search is operating deep into the flat portion of its Hill saturation curve; reallocating marginal dollars is imperative.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Paid Search CPC</div>
+        <div class="kpi-value">$9.54</div>
+        <div class="kpi-subtext">Intent Premium</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Paid Social CPC</div>
+        <div class="kpi-value">$5.51</div>
+        <div class="kpi-subtext">Discovery Efficiency</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Display Ads CPC</div>
+        <div class="kpi-value">$1.93</div>
+        <div class="kpi-subtext">Upper-Funnel Scale</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">6 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">JOURNEY VELOCITY</div>
+    <div class="action-title">Customer Journey Dynamics: 69.1% of Orders Require Multi-Channel Sequences Across 5.2 Days</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Path Length Distribution: Single-touch (30.9%), 2-3 touches (48.4%), 4+ touches (20.7%).</div><div class="bullet-item">Time-to-Convert: 43.1% convert within 3 days; 37.5% convert between 4 to 14 days; 19.4% require 15 to 30 days.</div><div class="bullet-item">Top Converting Combinations: Paid Social > Email Marketing, Paid Social > Direct, and Display > Email.</div><div class="bullet-item">Key Insight: Students introduced via Paid Social or Display require email nurture and direct recall before completing enrollment.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Multi-Touch Share</div>
+        <div class="kpi-value">69.1%</div>
+        <div class="kpi-subtext">Multi-Channel Paths</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Median Gestation</div>
+        <div class="kpi-value">4.1 Days</div>
+        <div class="kpi-subtext">Consideration Span</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Top Assisted Pair</div>
+        <div class="kpi-value">Social > Email</div>
+        <div class="kpi-subtext">High-Converting Flow</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">7 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">FUNNEL ROLE</div>
+    <div class="action-title">Funnel Role Analysis: Paid Social and Display Act as Essential Feeders with High Assist Ratios</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Top/Mid-Funnel Feeders: Display Ads (2.61 Assist:Last Ratio) and Paid Social (2.14 Assist:Last Ratio) originate pipeline.</div><div class="bullet-item">Nurturing Engine: Email Marketing generates 742 assisting interactions, acting as the primary mid-funnel glue.</div><div class="bullet-item">Closing Harvesters: Paid Search (1.18 ratio) and Direct disproportionately capture conversions originated elsewhere.</div><div class="bullet-item">Management Action: Evaluating Social or Display purely on Last-Click penalizes them for originating customers who convert via Direct.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Display Assist Ratio</div>
+        <div class="kpi-value">2.61</div>
+        <div class="kpi-subtext">Feeder Channel</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Social Assist Ratio</div>
+        <div class="kpi-value">2.14</div>
+        <div class="kpi-subtext">Feeder Channel</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Search Assist Ratio</div>
+        <div class="kpi-value">1.18</div>
+        <div class="kpi-subtext">Closer Channel</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">8 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">ATTRIBUTION COMPARISON</div>
+    <div class="action-title">Attribution Model Disagreement: Last-Touch Undervalues Paid Social by +47.6% and Over-Credits Direct by -33.6%</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">The Attribution Shift: Position-Based (U-Shaped) credits Paid Social with $571.9K revenue vs $387.4K in Last-Touch (+47.6% lift).</div><div class="bullet-item">Display Ad Re-evaluation: Display credit rises from $198.2K to $273.0K (+37.8%) when top-of-funnel origination is accounted for.</div><div class="bullet-item">Direct Demoted: Direct revenue drops from $554.4K (Last-Touch) to $368.2K (Position-Based) as upstream sources claim rightful credit.</div><div class="bullet-item">Executive Consequence: Under Last-Touch, marketing would defund the exact social and display campaigns generating half its leads.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Social Rev Delta</div>
+        <div class="kpi-value">+$184.6K</div>
+        <div class="kpi-subtext">+47.6% Credit Lift</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Display Rev Delta</div>
+        <div class="kpi-value">+$74.8K</div>
+        <div class="kpi-subtext">+37.8% Credit Lift</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Direct Rev Delta</div>
+        <div class="kpi-value">-$186.2K</div>
+        <div class="kpi-subtext">-33.6% Credit Drop</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">9 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">ALGORITHMIC ATTRIBUTION</div>
+    <div class="action-title">Data-Driven Markov & Shapley Models: Algorithmic Removal Effects Confirm Heavy Mid-Funnel Value</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Markov Removal Effect: Removing Paid Social from the transition graph causes an 18.2% drop in network conversions.</div><div class="bullet-item">Shapley Game Theory: Marginal cooperative contribution assigns $484.0K to Social and validates Position-Based alignment.</div><div class="bullet-item">Cross-Validation: Algorithmic Markov revenue for Paid Social ($484.0K) strongly correlates with Position-Based ($571.9K, r = 0.94).</div><div class="bullet-item">Operational Synthesis: Position-Based U-Shaped (40-20-40) selected as daily operational model; Markov used for quarterly budget setting.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Markov Social Rev</div>
+        <div class="kpi-value">$484.0K</div>
+        <div class="kpi-subtext">Data-Driven Credit</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Social Removal Eff</div>
+        <div class="kpi-value">18.2%</div>
+        <div class="kpi-subtext">Pipeline Destruction</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Model Correlation</div>
+        <div class="kpi-value">r = 0.94</div>
+        <div class="kpi-subtext">High Agreement</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">10 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">PORTFOLIO QUADRANTS</div>
+    <div class="action-title">Campaign Performance Matrix: 3 Stars Drive Scale; 4 Email/Referral Workhorses Deserve Immediate Funding</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Stars (Protect & Scale +20%): PS_Brand_Core ($182K Rev, 2.9x ROAS) and SOC_Meta_Prospecting ($265K Rev, 4.2x ROAS).</div><div class="bullet-item">Scalable / Hidden Gems (Budget Infusion): EM_Alumni_Upsell (16.2x ROAS) and REF_Student_Advocate (6.8x ROAS) are starved for funds.</div><div class="bullet-item">Question Marks (Creative Refresh): PS_NonBrand_Analytics ($210K Rev, 2.4x ROAS) has elevated CPA; requires negative keyword pruning.</div><div class="bullet-item">Cut Candidates (Slash 30%): DIS_Affinity_Awareness produces low qualified engagement; budget should be redirected to nurture.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Portfolio Stars</div>
+        <div class="kpi-value">3 Campaigns</div>
+        <div class="kpi-subtext">Core Revenue Engine</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Scalable Gems</div>
+        <div class="kpi-value">4 Campaigns</div>
+        <div class="kpi-subtext">High ROAS / Low Spend</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Cut Candidates</div>
+        <div class="kpi-value">2 Campaigns</div>
+        <div class="kpi-subtext">Immediate Savings</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">11 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">CLV & COHORT DYNAMICS</div>
+    <div class="action-title">Customer Lifetime Value: High-Quality Channels Deliver Sustainable 3.2x to 7.8x LTV:CAC Ratios</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Repeat Purchase Rate: 12.9% of Paid Social students and 11.0% of Paid Search students enroll in follow-on specialized certifications.</div><div class="bullet-item">Historical vs Predictive CLV: Initial course purchase ($1,094) expands to $2,714 over 12 months in the BG/NBD predictive model.</div><div class="bullet-item">LTV:CAC Dominance: Display (7.84x), Referral (7.83x), and Paid Social (6.20x) surpass the 3.0x industry benchmark.</div><div class="bullet-item">Search Payback: Paid Search LTV:CAC (3.25x) is profitable, but yields lower headroom due to intense auction keyword competition.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Display LTV:CAC</div>
+        <div class="kpi-value">7.84x</div>
+        <div class="kpi-subtext">Predictive: 19.8x</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Social LTV:CAC</div>
+        <div class="kpi-value">6.20x</div>
+        <div class="kpi-subtext">Predictive: 15.1x</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Search LTV:CAC</div>
+        <div class="kpi-value">3.25x</div>
+        <div class="kpi-subtext">Predictive: 8.06x</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">12 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">BUDGET OPTIMIZATION</div>
+    <div class="action-title">Optimized Budget Reallocation: Zero-Sum Shift of $58.4K Expands Revenue by +$224.9K</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">The Capital Reallocation: Shift -$58,400 (-29.4%) from Paid Search into Email (+$21,250), Referral (+$20,250), Display (+$12,300), and Social (+$4,600).</div><div class="bullet-item">Equalizing Marginal ROAS: Email marginal ROAS (4.91x) and Referral (2.61x) vastly exceed Search (1.67x) at current spend levels.</div><div class="bullet-item">Projected Return Scenarios: Base Case yields +$224,908 incremental revenue (+13.3% paid lift); Low Case yields +$33,463; High Case yields +$512,074.</div><div class="bullet-item">Zero Budget Increase: Total marketing expenditure remains exactly $426,418.04; returns generated solely through portfolio efficiency.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Search Reduction</div>
+        <div class="kpi-value">-$58,400</div>
+        <div class="kpi-subtext">-29.4% Capital Shift</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Email Expansion</div>
+        <div class="kpi-value">+$21,250</div>
+        <div class="kpi-subtext">+155.1% Budget Boost</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Net Base Uplift</div>
+        <div class="kpi-value">+$224,908</div>
+        <div class="kpi-subtext">+13.3% Paid Lift</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">13 / 14</div>
+  </div>
+
+  <div class="slide">
+    <div class="cat-tag">EXECUTION & ROADMAP</div>
+    <div class="action-title">De-Risking & Execution Roadmap: 4-Week Matched-Market Geo-Holdout Test Validates Incrementality</div>
+    <div class="content-grid">
+      <div class="left-card">
+        <div class="bullet-item">Phase 1: Matched Geo-Holdout Test (Weeks 1-4): Split 8 matched metro markets (Dallas/San Francisco vs Austin/Seattle).</div><div class="bullet-item">Phase 2: Automated Attribution Pipeline (Weeks 3-5): Automate SQL queries in DuckDB/SQLite with weekly Power BI refreshes.</div><div class="bullet-item">Phase 3: Automated Email Trigger Scaling (Weeks 4-6): Deploy abandoned application and syllabus nurture automation sequences.</div><div class="bullet-item">Phase 4: Full Portfolio Rebalancing (Week 7+): Deploy final budget reallocation upon confirmation of p < 0.05 causal lift.</div>
+      </div>
+      <div class="kpi-container">
+        
+      <div class="kpi-card">
+        <div class="kpi-label">Test Duration</div>
+        <div class="kpi-value">4 Weeks</div>
+        <div class="kpi-subtext">Difference-in-Diff</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Min Detectable Effect</div>
+        <div class="kpi-value">5.0% Lift</div>
+        <div class="kpi-subtext">95% Confidence</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Guardrail Stop-Loss</div>
+        <div class="kpi-value">+20% CPA</div>
+        <div class="kpi-subtext">Automatic Pause Rule</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="slide-num">14 / 14</div>
+  </div>
+
+</body>
+</html>
